@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */; };
-		6EAAA5E724C0EC7A0067F283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5E624C0EC7A0067F283 /* SceneDelegate.swift */; };
-		6EAAA5E924C0EC7A0067F283 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5E824C0EC7A0067F283 /* ViewController.swift */; };
-		6EAAA5EC24C0EC7A0067F283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EAAA5EA24C0EC7A0067F283 /* Main.storyboard */; };
 		6EAAA5EF24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5ED24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld */; };
 		6EAAA5F124C0EC7E0067F283 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EAAA5F024C0EC7E0067F283 /* Assets.xcassets */; };
 		6EAAA5F424C0EC7E0067F283 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */; };
@@ -38,19 +35,16 @@
 /* Begin PBXFileReference section */
 		6EAAA5E124C0EC7A0067F283 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6EAAA5E624C0EC7A0067F283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6EAAA5E824C0EC7A0067F283 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6EAAA5EB24C0EC7A0067F283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6EAAA5EE24C0EC7A0067F283 /* FlickerSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlickerSearch.xcdatamodel; sourceTree = "<group>"; };
 		6EAAA5F024C0EC7E0067F283 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EAAA5F324C0EC7E0067F283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6EAAA5F524C0EC7E0067F283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EAAA5F524C0EC7E0067F283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		6EAAA5FA24C0EC7E0067F283 /* FlickerSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickerSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAAA5FE24C0EC7E0067F283 /* FlickerSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchTests.swift; sourceTree = "<group>"; };
-		6EAAA60024C0EC7E0067F283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EAAA60524C0EC7E0067F283 /* FlickerSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickerSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAAA60924C0EC7E0067F283 /* FlickerSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchUITests.swift; sourceTree = "<group>"; };
 		6EAAA60B24C0EC7E0067F283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EAAA62B24C0F3770067F283 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +95,12 @@
 		6EAAA5E324C0EC7A0067F283 /* FlickerSearch */ = {
 			isa = PBXGroup;
 			children = (
-				6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */,
-				6EAAA5E624C0EC7A0067F283 /* SceneDelegate.swift */,
-				6EAAA5E824C0EC7A0067F283 /* ViewController.swift */,
-				6EAAA5EA24C0EC7A0067F283 /* Main.storyboard */,
-				6EAAA5F024C0EC7E0067F283 /* Assets.xcassets */,
-				6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */,
-				6EAAA5F524C0EC7E0067F283 /* Info.plist */,
+				6EAAA61924C0EF4A0067F283 /* AppStartup */,
+				6EAAA61A24C0EF550067F283 /* Common */,
+				6EAAA61B24C0EF600067F283 /* Features */,
 				6EAAA5ED24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld */,
+				6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */,
+				6EAAA61C24C0EF710067F283 /* Resources */,
 			);
 			path = FlickerSearch;
 			sourceTree = "<group>";
@@ -116,8 +108,8 @@
 		6EAAA5FD24C0EC7E0067F283 /* FlickerSearchTests */ = {
 			isa = PBXGroup;
 			children = (
+				6EAAA62B24C0F3770067F283 /* Info.plist */,
 				6EAAA5FE24C0EC7E0067F283 /* FlickerSearchTests.swift */,
-				6EAAA60024C0EC7E0067F283 /* Info.plist */,
 			);
 			path = FlickerSearchTests;
 			sourceTree = "<group>";
@@ -129,6 +121,133 @@
 				6EAAA60B24C0EC7E0067F283 /* Info.plist */,
 			);
 			path = FlickerSearchUITests;
+			sourceTree = "<group>";
+		};
+		6EAAA61924C0EF4A0067F283 /* AppStartup */ = {
+			isa = PBXGroup;
+			children = (
+				6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */,
+				6EAAA61D24C0EFCD0067F283 /* AppNavigator */,
+				6EAAA5F524C0EC7E0067F283 /* Info.plist */,
+			);
+			path = AppStartup;
+			sourceTree = "<group>";
+		};
+		6EAAA61A24C0EF550067F283 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6EAAA62324C0F0160067F283 /* Constants */,
+				6EAAA62224C0F00C0067F283 /* Extensions */,
+				6EAAA62124C0EFFD0067F283 /* LocalDBManager */,
+				6EAAA61E24C0EFD80067F283 /* Networking */,
+				6EAAA62024C0EFED0067F283 /* ThirdParties */,
+				6EAAA61F24C0EFE50067F283 /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6EAAA61B24C0EF600067F283 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6EAAA62724C0F0830067F283 /* Data */,
+				6EAAA62824C0F08A0067F283 /* Domain */,
+				6EAAA62624C0F0790067F283 /* Models */,
+				6EAAA62924C0F0940067F283 /* Services */,
+				6EAAA62A24C0F09B0067F283 /* UI */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6EAAA61C24C0EF710067F283 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6EAAA5F024C0EC7E0067F283 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6EAAA61D24C0EFCD0067F283 /* AppNavigator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppNavigator;
+			sourceTree = "<group>";
+		};
+		6EAAA61E24C0EFD80067F283 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6EAAA61F24C0EFE50067F283 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6EAAA62024C0EFED0067F283 /* ThirdParties */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdParties;
+			sourceTree = "<group>";
+		};
+		6EAAA62124C0EFFD0067F283 /* LocalDBManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocalDBManager;
+			sourceTree = "<group>";
+		};
+		6EAAA62224C0F00C0067F283 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6EAAA62324C0F0160067F283 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		6EAAA62624C0F0790067F283 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6EAAA62724C0F0830067F283 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6EAAA62824C0F08A0067F283 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6EAAA62924C0F0940067F283 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6EAAA62A24C0F09B0067F283 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,7 +357,6 @@
 			files = (
 				6EAAA5F424C0EC7E0067F283 /* LaunchScreen.storyboard in Resources */,
 				6EAAA5F124C0EC7E0067F283 /* Assets.xcassets in Resources */,
-				6EAAA5EC24C0EC7A0067F283 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,9 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EAAA5EF24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld in Sources */,
-				6EAAA5E924C0EC7A0067F283 /* ViewController.swift in Sources */,
 				6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */,
-				6EAAA5E724C0EC7A0067F283 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,14 +438,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6EAAA5EA24C0EC7A0067F283 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6EAAA5EB24C0EC7A0067F283 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
