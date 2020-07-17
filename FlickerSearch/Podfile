@@ -6,6 +6,10 @@ target 'FlickerSearch' do
   use_frameworks!
 
   # Pods for FlickerSearch
+  
+  pod 'Alamofire'
+  pod 'SDWebImage'
+  pod 'NVActivityIndicatorView'
 
   target 'FlickerSearchTests' do
     inherit! :search_paths
