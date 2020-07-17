@@ -16,6 +16,11 @@
 		6E485C9B24C18FBE0004A099 /* AlertPresentable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9A24C18FBE0004A099 /* AlertPresentable+Extension.swift */; };
 		6E485C9D24C18FCA0004A099 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9C24C18FCA0004A099 /* NibLoadableView.swift */; };
 		6E485C9F24C18FDB0004A099 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9E24C18FDB0004A099 /* UIViewController+Extension.swift */; };
+		6E485CA324C193B50004A099 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485CA224C193B50004A099 /* AppNavigationController.swift */; };
+		6E485CA524C193C20004A099 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485CA424C193C20004A099 /* BaseViewController.swift */; };
+		6E485CA724C1940E0004A099 /* NoInternetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485CA624C1940E0004A099 /* NoInternetHeaderView.swift */; };
+		6E485CA924C1942A0004A099 /* NoInternetHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E485CA824C1942A0004A099 /* NoInternetHeaderView.xib */; };
+		6E485CAB24C1944C0004A099 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485CAA24C1944C0004A099 /* Reachability.swift */; };
 		6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */; };
 		6EAAA5EF24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EAAA5ED24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld */; };
 		6EAAA5F124C0EC7E0067F283 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EAAA5F024C0EC7E0067F283 /* Assets.xcassets */; };
@@ -52,6 +57,11 @@
 		6E485C9A24C18FBE0004A099 /* AlertPresentable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertPresentable+Extension.swift"; sourceTree = "<group>"; };
 		6E485C9C24C18FCA0004A099 /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		6E485C9E24C18FDB0004A099 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		6E485CA224C193B50004A099 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
+		6E485CA424C193C20004A099 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6E485CA624C1940E0004A099 /* NoInternetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetHeaderView.swift; sourceTree = "<group>"; };
+		6E485CA824C1942A0004A099 /* NoInternetHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetHeaderView.xib; sourceTree = "<group>"; };
+		6E485CAA24C1944C0004A099 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		6EAAA5E124C0EC7A0067F283 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EAAA5EE24C0EC7A0067F283 /* FlickerSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlickerSearch.xcdatamodel; sourceTree = "<group>"; };
@@ -101,6 +111,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E485CA024C1938B0004A099 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E485CA224C193B50004A099 /* AppNavigationController.swift */,
+				6E485CA424C193C20004A099 /* BaseViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6E485CA124C193A10004A099 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E485CA624C1940E0004A099 /* NoInternetHeaderView.swift */,
+				6E485CA824C1942A0004A099 /* NoInternetHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		6EAAA5D824C0EC7A0067F283 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +242,8 @@
 		6EAAA61F24C0EFE50067F283 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6E485CA124C193A10004A099 /* Views */,
+				6E485CA024C1938B0004A099 /* Controllers */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -221,6 +251,7 @@
 		6EAAA62024C0EFED0067F283 /* ThirdParties */ = {
 			isa = PBXGroup;
 			children = (
+				6E485CAA24C1944C0004A099 /* Reachability.swift */,
 			);
 			path = ThirdParties;
 			sourceTree = "<group>";
@@ -419,6 +450,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E485CA924C1942A0004A099 /* NoInternetHeaderView.xib in Resources */,
 				6EAAA5F424C0EC7E0067F283 /* LaunchScreen.storyboard in Resources */,
 				6EAAA5F124C0EC7E0067F283 /* Assets.xcassets in Resources */,
 			);
@@ -533,6 +565,8 @@
 			files = (
 				6E485C9F24C18FDB0004A099 /* UIViewController+Extension.swift in Sources */,
 				6E485C9D24C18FCA0004A099 /* NibLoadableView.swift in Sources */,
+				6E485CA524C193C20004A099 /* BaseViewController.swift in Sources */,
+				6E485CA724C1940E0004A099 /* NoInternetHeaderView.swift in Sources */,
 				6E485C9924C18FB20004A099 /* UIFont+Extension.swift in Sources */,
 				6E485C9524C18F8A0004A099 /* UICollectionView+Extension.swift in Sources */,
 				6E485C9324C18F7B0004A099 /* Storyboard+Extensions.swift in Sources */,
@@ -540,6 +574,8 @@
 				6E485C9B24C18FBE0004A099 /* AlertPresentable+Extension.swift in Sources */,
 				6EAAA5EF24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld in Sources */,
 				6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */,
+				6E485CA324C193B50004A099 /* AppNavigationController.swift in Sources */,
+				6E485CAB24C1944C0004A099 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

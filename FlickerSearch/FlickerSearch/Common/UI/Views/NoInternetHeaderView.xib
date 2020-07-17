@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Oa0-63-Ryi" customClass="NoInternetHeaderView" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="733" height="93"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCQ-As-RXM">
+                    <rect key="frame" x="0.0" y="0.0" width="733" height="93"/>
+                    <viewLayoutGuide key="safeArea" id="aFo-vP-bfI"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dCQ-As-RXM" firstAttribute="leading" secondItem="Oa0-63-Ryi" secondAttribute="leading" id="6Ho-mZ-V6y"/>
+                <constraint firstAttribute="trailing" secondItem="dCQ-As-RXM" secondAttribute="trailing" id="YDv-TM-oZB"/>
+                <constraint firstItem="dCQ-As-RXM" firstAttribute="top" secondItem="Oa0-63-Ryi" secondAttribute="top" id="edL-u0-TPW"/>
+                <constraint firstAttribute="bottom" secondItem="dCQ-As-RXM" secondAttribute="bottom" id="gbR-b2-pFD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="TLh-7h-syt"/>
+            <connections>
+                <outlet property="noInternetLabel" destination="dCQ-As-RXM" id="Qcy-xO-zc0"/>
+            </connections>
+            <point key="canvasLocation" x="368.84057971014494" y="-142.29910714285714"/>
+        </view>
+    </objects>
+</document>
