@@ -25,4 +25,3 @@ class NoInternetHeaderView: UIView, NibLoadableView {
         noInternetLabel.textAlignment = .center
     }
 }
-

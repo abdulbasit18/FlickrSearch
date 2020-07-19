@@ -34,4 +34,3 @@ class AppNavigationController: UINavigationController {
         return .lightContent
     }
 }
-

@@ -36,7 +36,7 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable, AlertsP
         }
         
         reachability?.whenUnreachable = { _ in
-            if (self.noInternetHeaderView.isHidden) {
+            if self.noInternetHeaderView.isHidden {
                 self.noInternetHeaderView.isHidden.toggle()
             }
         }
@@ -44,4 +44,3 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable, AlertsP
     }
     
 }
-
