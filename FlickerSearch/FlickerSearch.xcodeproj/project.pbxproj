@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -157,9 +157,8 @@
 				6EAAA61924C0EF4A0067F283 /* AppStartup */,
 				6EAAA61A24C0EF550067F283 /* Common */,
 				6EAAA61B24C0EF600067F283 /* Features */,
-				6EAAA5ED24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld */,
-				6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */,
 				6EAAA61C24C0EF710067F283 /* Resources */,
+				6EAAA5ED24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld */,
 			);
 			path = FlickerSearch;
 			sourceTree = "<group>";
@@ -185,8 +184,9 @@
 		6EAAA61924C0EF4A0067F283 /* AppStartup */ = {
 			isa = PBXGroup;
 			children = (
-				6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */,
 				6EAAA61D24C0EFCD0067F283 /* AppNavigator */,
+				6EAAA5F224C0EC7E0067F283 /* LaunchScreen.storyboard */,
+				6EAAA5E424C0EC7A0067F283 /* AppDelegate.swift */,
 				6EAAA5F524C0EC7E0067F283 /* Info.plist */,
 			);
 			path = AppStartup;
@@ -354,6 +354,7 @@
 				6EAAA5DE24C0EC7A0067F283 /* Frameworks */,
 				6EAAA5DF24C0EC7A0067F283 /* Resources */,
 				6EAAA61824C0EDD10067F283 /* ShellScript */,
+				F2BAD88190ACAB1363482370 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -372,6 +373,7 @@
 				6EAAA5F624C0EC7E0067F283 /* Sources */,
 				6EAAA5F724C0EC7E0067F283 /* Frameworks */,
 				6EAAA5F824C0EC7E0067F283 /* Resources */,
+				A131AF320A05A02AABBFC0BB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,6 +393,7 @@
 				6EAAA60124C0EC7E0067F283 /* Sources */,
 				6EAAA60224C0EC7E0067F283 /* Frameworks */,
 				6EAAA60324C0EC7E0067F283 /* Resources */,
+				1D65BCE456B33220834967C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -473,6 +476,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D65BCE456B33220834967C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch-FlickerSearchUITests/Pods-FlickerSearch-FlickerSearchUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch-FlickerSearchUITests/Pods-FlickerSearch-FlickerSearchUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch-FlickerSearchUITests/Pods-FlickerSearch-FlickerSearchUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2AC607E8B61B5425C84BFFF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,6 +574,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A131AF320A05A02AABBFC0BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearchTests/Pods-FlickerSearchTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearchTests/Pods-FlickerSearchTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlickerSearchTests/Pods-FlickerSearchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2BAD88190ACAB1363482370 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
