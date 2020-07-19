@@ -22,11 +22,15 @@ struct RequestBuilder<Parameter: Encodable> {
     let path: APIPathBuilder
     let parameters: Parameter
     let headers: [String: String]?
+    let encoder: URLEncoding
     
-    init(path: APIPathBuilder, parameters: Parameter, headers: [String: String]? = nil) {
+    init(path: APIPathBuilder, parameters: Parameter,
+         headers: [String: String]? = nil,
+         encoder: URLEncoding = .default) {
         self.path = path
         self.parameters = parameters
         self.headers = headers
+        self.encoder = encoder
     }
 }
 
