@@ -17,6 +17,8 @@
 		6E0CDB4024C4A924002B096E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3F24C4A924002B096E /* Constants.swift */; };
 		6E0CDB4324C4AA04002B096E /* PhotosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB4224C4AA04002B096E /* PhotosRepository.swift */; };
 		6E0CDB4624C4AD6F002B096E /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB4524C4AD6F002B096E /* PhotosService.swift */; };
+		6E0CDB4824C4B4D2002B096E /* PhotosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB4724C4B4D2002B096E /* PhotosListViewModel.swift */; };
+		6E0CDB4C24C4BA55002B096E /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB4B24C4BA55002B096E /* UIScrollView+Extensions.swift */; };
 		6E485C9324C18F7B0004A099 /* Storyboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9224C18F7B0004A099 /* Storyboard+Extensions.swift */; };
 		6E485C9524C18F8A0004A099 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9424C18F8A0004A099 /* UICollectionView+Extension.swift */; };
 		6E485C9724C18F950004A099 /* UIKitReuseIdentifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9624C18F940004A099 /* UIKitReuseIdentifier+Extension.swift */; };
@@ -78,6 +80,8 @@
 		6E0CDB3F24C4A924002B096E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6E0CDB4224C4AA04002B096E /* PhotosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepository.swift; sourceTree = "<group>"; };
 		6E0CDB4524C4AD6F002B096E /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
+		6E0CDB4724C4B4D2002B096E /* PhotosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotosListViewModel.swift; path = FlickerSearch/Features/Services/Photos/PhotosListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		6E0CDB4B24C4BA55002B096E /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		6E485C9224C18F7B0004A099 /* Storyboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extensions.swift"; sourceTree = "<group>"; };
 		6E485C9424C18F8A0004A099 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		6E485C9624C18F940004A099 /* UIKitReuseIdentifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitReuseIdentifier+Extension.swift"; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 				6E485C9A24C18FBE0004A099 /* AlertPresentable+Extension.swift */,
 				6E485C9C24C18FCA0004A099 /* NibLoadableView.swift */,
 				6E485C9E24C18FDB0004A099 /* UIViewController+Extension.swift */,
+				6E0CDB4B24C4BA55002B096E /* UIScrollView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 		6EBEA93324C47E65005DA753 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6E0CDB4724C4B4D2002B096E /* PhotosListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				6EBEA93C24C48259005DA753 /* PhotoListNavigator.swift in Sources */,
 				6EBEA93E24C482B0005DA753 /* PhotoDTO.swift in Sources */,
 				6E485C9524C18F8A0004A099 /* UICollectionView+Extension.swift in Sources */,
+				6E0CDB4824C4B4D2002B096E /* PhotosListViewModel.swift in Sources */,
 				6E485C9324C18F7B0004A099 /* Storyboard+Extensions.swift in Sources */,
 				6EBEA92E24C478A4005DA753 /* Predicate.swift in Sources */,
 				6E485C9724C18F950004A099 /* UIKitReuseIdentifier+Extension.swift in Sources */,
@@ -808,6 +815,7 @@
 				6EBEA94824C4893A005DA753 /* PhotoRequest.swift in Sources */,
 				6EBEA95124C48B3B005DA753 /* PhotosLocalDataSource.swift in Sources */,
 				6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */,
+				6E0CDB4C24C4BA55002B096E /* UIScrollView+Extensions.swift in Sources */,
 				6EBEA94A24C48943005DA753 /* PhotoResponse.swift in Sources */,
 				6E485CA324C193B50004A099 /* AppNavigationController.swift in Sources */,
 				6EBEA93A24C47EDF005DA753 /* PhotoListViewController.swift in Sources */,
