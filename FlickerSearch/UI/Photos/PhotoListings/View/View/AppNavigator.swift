@@ -18,12 +18,12 @@ struct AppNavigator { //: AppNavigatorProtocol {
     func installRoot(into window: UIWindow) {
         // controller create & setup
         let storyboard = UIStoryboard(storyboard: .photos)
-        let movieListController: PhotoListViewController = storyboard.initialViewController()
-        let rootController = AppNavigationController(rootViewController: movieListController)
+        let photoListController: PhotoListViewController = storyboard.initialViewController()
+        let rootController = AppNavigationController(rootViewController: photoListController)
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let coreDataManager = CoreDataManger(context: context)
         
         window.rootViewController = rootController
     }
 }
-// swiftlint:disable force_cast
+// swiftlint:enable force_cast

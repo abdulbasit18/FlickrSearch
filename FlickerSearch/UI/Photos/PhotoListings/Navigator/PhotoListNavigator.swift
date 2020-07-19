@@ -12,7 +12,6 @@ protocol PhotoListNavigatorProtocol {
     func navigateToDetail(with photo: PhotoDTO)
 }
 
-
 final class PhotoListNavigator: PhotoListNavigatorProtocol {
     private weak var navigationController: UINavigationController?
     
