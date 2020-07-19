@@ -9,7 +9,7 @@
 import Foundation
 
 struct PhotoListCellViewModel {
-    let photoImageUrl: URL
+    let photoImageUrl: URL?
     let title: String
     let placeHolderImage: String
 }
