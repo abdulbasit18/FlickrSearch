@@ -41,7 +41,7 @@ final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private let networkManager: Networking
-    private let endpoint = "movie/now_playing"
+    private let endpoint = ""
     
     // MARK: - Initilizers
     init(networkManager: Networking = NetworkManager()) {
@@ -62,9 +62,10 @@ final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
     
     // MARK: - Networking
     private func getPhotos(parameters: PhotoRequestModel) {
-        let path = APIPathBuilder(baseURL: Constants.API.baseURL, endPoint: endpoint)
-        let request = RequestBuilder(path: path, parameters: parameters)
         
+        let path = APIPathBuilder(baseURL: Constants.API.baseURL, endPoint: endpoint)
+        let request = RequestBuilder(path: path, parameters: parameters, encoder: .queryString)
+
         networkManager.get(request: request) { [weak self] (response: APIResponse<PhotoResponseModel>)  in
             guard let self = self else { return }
             switch response.result {
