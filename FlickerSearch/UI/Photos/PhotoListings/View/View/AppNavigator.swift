@@ -22,6 +22,17 @@ struct AppNavigator { //: AppNavigatorProtocol {
         let rootController = AppNavigationController(rootViewController: photoListController)
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let coreDataManager = CoreDataManger(context: context)
+        //View Model create & setup
+        let remoteDataSource = PhotosRemoteDataStore()
+        let localDataSource = PhotosLocalDataSource(localDBManager: coreDataManager)
+        let repository = PhotosRepository(remotePhotosDataSource: remoteDataSource,
+                                          localPhotosDataSource: localDataSource)
+        let service = PhotosService(photosRepository: repository)
+        let navigator = PhotoListNavigator(navigationController: rootController)
+        let viewModel = PhotosListViewModel(photosService: service,
+                                            navigator: navigator)
+        
+        photoListController.viewModel = viewModel
         
         window.rootViewController = rootController
     }
