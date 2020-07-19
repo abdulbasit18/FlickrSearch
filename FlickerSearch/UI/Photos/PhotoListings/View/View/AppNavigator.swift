@@ -25,5 +25,5 @@ struct AppNavigator { //: AppNavigatorProtocol {
         
         window.rootViewController = rootController
     }
-}
+}ss
 // swiftlint:disable force_cast
