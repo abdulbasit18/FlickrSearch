@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotoRequest: Encodable {
+struct PhotoRequestModel: Encodable {
     let page: Int
     let api_key: String
 }
