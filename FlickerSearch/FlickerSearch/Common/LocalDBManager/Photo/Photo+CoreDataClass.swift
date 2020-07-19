@@ -27,14 +27,10 @@ public class Photo: NSManagedObject {
         let entityDesc = NSEntityDescription.entity(forEntityName: "Photo", in: context)
         super.init(entity: entityDesc!, insertInto: context)
 
-        self.id = Int64(photoDTO.id)
+        self.id = photoDTO.id
         self.owner = photoDTO.owner
         self.secret = photoDTO.secret
         self.server = photoDTO.server
-        self.farm = photoDTO.farm
         self.title = photoDTO.title
-        self.isPublic = photoDTO.isPublic ?? false
-        self.isfriend = photoDTO.isfriend ?? false
-        self.isfamily = photoDTO.isfamily ?? false
     }
 }

@@ -9,6 +9,12 @@
 import Foundation
 
 struct PhotoRequestModel: Encodable {
-    let page: Int
+    
+    let method = "flickr.photos.search"
     let api_key: String
+    let tags: String
+    let page: Int
+    let format = "json"
+    let per_page = "10"
+    let nojsoncallback = "1"
 }

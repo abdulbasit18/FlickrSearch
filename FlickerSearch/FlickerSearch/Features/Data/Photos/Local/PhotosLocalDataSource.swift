@@ -120,30 +120,22 @@ extension PhotosLocalDataSource {
         guard let data = localDBManager.doesThisObjectExist(entity, predicate: predicate) as? Photo
             else { return }
         
-        data.id = Int64(photo.id)
+        data.id = photo.id
         data.owner = photo.owner
         data.secret = photo.secret
         data.server = photo.server
-        data.farm = photo.farm
         data.title = photo.title
-        data.isPublic = photo.isPublic ?? false
-        data.isfriend = photo.isfriend ?? false
-        data.isfamily = photo.isfamily ?? false
 
         localDBManager.save(entity: entity)
         
     }
     
     private func convertPhotoToPhotoDTO(photo: Photo) -> PhotoDTO {
-        PhotoDTO(id: Int(photo.id),
+        PhotoDTO(id: photo.id ?? "",
                         owner: photo.owner,
                         secret: photo.secret,
                         server: photo.server,
-                        farm: photo.farm,
-                        title: photo.title,
-                        isPublic: photo.isPublic,
-                        isfriend: photo.isfriend,
-                        isfamily: photo.isfamily
+                        title: photo.title
         )
     }
     

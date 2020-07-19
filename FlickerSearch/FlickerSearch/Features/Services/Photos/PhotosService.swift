@@ -9,9 +9,9 @@
 import Foundation
 import RxSwift
 
-//MARK: - Protocols
+// MARK: - Protocols
 protocol PhotosServiceInputs: class {
-    var getPhotosSubject: PublishSubject<Void?> { get }
+    var getPhotosSubject: PublishSubject<String> { get }
 }
 
 protocol PhotosServiceOutputs: class {
@@ -25,26 +25,27 @@ protocol PhotosServiceProtocol: PhotosServiceInputs, PhotosServiceOutputs {
     var outputs: PhotosServiceOutputs { get }
 }
 
-//MARK: - PhotosService Implementation
+// MARK: - PhotosService Implementation
 final class PhotosService: PhotosServiceProtocol {
     
     var inputs: PhotosServiceInputs { self }
     var outputs: PhotosServiceOutputs { self }
     
-    //MARK: - Inputs
-    var getPhotosSubject = PublishSubject<Void?>()
+   // MARK: - Inputs
+    var getPhotosSubject = PublishSubject<String>()
     
-    //MARK: - Outputs
+   // MARK: - Outputs
     var fetchPhotosSubject = PublishSubject<[PhotoDTO]>()
     var failWithErrorSubject = PublishSubject<FailedPhotosErrorType>()
     var cantFetchPhotosSubject = PublishSubject<Void?>()
     
-    //MARK: - Properties
+   // MARK: - Properties
     private var photoResponse: PhotoResponseModel?
+    private var tags = ""
     private let photosRepository: PhotosRepositoryProtocol
     private let disposeBag = DisposeBag()
     
-    //MARK: - Initilizers
+   // MARK: - Initilizers
     init(photosRepository: PhotosRepositoryProtocol) {
         self.photosRepository = photosRepository
         
@@ -52,15 +53,16 @@ final class PhotosService: PhotosServiceProtocol {
         setupBindings()
     }
     
-    //MARK: - Bindings
+   // MARK: - Bindings
     private func setupBindings() {
         /*Shared Subject of photos which will
          be shared between local local photos object and to output the fetched photos*/
-        let sharedPhotoSubject = self.photosRepository.outputs.fetchPhotosSubject.share(replay: 1, scope: .whileConnected)
+        let sharedPhotoSubject = self.photosRepository.outputs
+            .fetchPhotosSubject.share(replay: 1, scope: .whileConnected)
         
         //Output Photos Data
         sharedPhotoSubject
-            .compactMap{$0.photos.photo}
+            .compactMap {$0.photos.photo}
             .bind(to: outputs.fetchPhotosSubject)
             .disposed(by: disposeBag)
         
@@ -75,20 +77,20 @@ final class PhotosService: PhotosServiceProtocol {
             .disposed(by: disposeBag)
         
         //Get Photos input call
-        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (_) in
+        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (tag) in
             guard let self = self else { return }
-            self.getPhotosData()
+            self.getPhotosData(tag: tag)
         }).disposed(by: disposeBag)
     }
 }
 
-//MARK: - Extensions
+// MARK: - Extensions
 extension PhotosService {
     
     //Outputs photos data
-    private func getPhotosData() {
+    private func getPhotosData(tag: String) {
         (canFetchPhotos()) ?
-            fetchPhotos(page: (photoResponse?.photos.page ?? 0) + 1, apiKey: Constants.Keys.api) :
+            fetchPhotos(page: (photoResponse?.photos.page ?? 0) + 1, tags: tag, apiKey: Constants.Keys.api) :
             cantFetchPhotos()
     }
     
@@ -97,12 +99,13 @@ extension PhotosService {
         guard let photoResponse = photoResponse,
             (photoResponse.photos.page != nil),
             (photoResponse.photos.total != nil) else { return true }
-        return (photoResponse.photos.page! == photoResponse.photos.total!) ? false : true
+        return (photoResponse.photos.page == Int(photoResponse.photos.total ?? "0")) ? false : true
     }
     
     //Get photos
-    private func fetchPhotos(page: Int, apiKey: String) {
-        let photosRequestModel = PhotoRequestModel(page: page, api_key: apiKey)
+    private func fetchPhotos(page: Int, tags: String, apiKey: String) {
+        self.tags = tags
+        let photosRequestModel = PhotoRequestModel(api_key: apiKey, tags: tags, page: page)
         self.photosRepository.inputs.getPhotosSubject.onNext(photosRequestModel)
     }
     
@@ -110,6 +113,4 @@ extension PhotosService {
     private func cantFetchPhotos() {
         outputs.cantFetchPhotosSubject.onNext(nil)
     }
-    
 }
-

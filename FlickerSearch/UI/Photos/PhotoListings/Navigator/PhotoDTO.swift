@@ -7,15 +7,41 @@
 //
 
 import Foundation
+import RxDataSources
 
 struct PhotoDTO: Decodable {
-    let id: Int
+    let id: String
     let owner: String?
     let secret: String?
     let server: String?
-    let farm: String?
     let title: String?
-    let isPublic: Bool?
-    let isfriend: Bool?
-    let isfamily: Bool?
+}
+
+struct PhotoSection {
+    var header: String
+    var items: [Item]
+    var uniqueId: String = "Trending"
+}
+
+extension PhotoSection: AnimatableSectionModelType {
+    
+    typealias Item = PhotoDTO
+    typealias Identity = String
+    
+    init(original: PhotoSection, items: [Item]) {
+        self = original
+        self.items = items
+    }
+    var identity: String {
+        return uniqueId
+    }
+}
+
+extension PhotoDTO: IdentifiableType, Equatable {
+    
+    typealias Identity = Int
+    
+    var identity: Int {
+        return Int(id) ?? 0
+    }
 }

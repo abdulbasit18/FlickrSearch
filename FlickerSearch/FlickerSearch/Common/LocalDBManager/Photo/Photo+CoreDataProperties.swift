@@ -15,14 +15,10 @@ extension Photo {
         return NSFetchRequest<Photo>(entityName: "Photo")
     }
 
-    @NSManaged public var id: Int64
+    @NSManaged public var id: String?
     @NSManaged public var owner: String?
     @NSManaged public var secret: String?
     @NSManaged public var server: String?
-    @NSManaged public var farm: String?
     @NSManaged public var title: String?
-    @NSManaged public var isPublic: Bool
-    @NSManaged public var isfriend: Bool
-    @NSManaged public var isfamily: Bool
     
 }

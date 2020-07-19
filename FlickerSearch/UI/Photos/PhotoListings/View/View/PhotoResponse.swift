@@ -14,7 +14,7 @@ struct PhotoResponseModel: Decodable {
 
 struct PhotoModel: Decodable {
     let page: Int?
-    let total: Int?
+    let total: String?
     let pages: Int?
     let photo: [PhotoDTO]?
 }
