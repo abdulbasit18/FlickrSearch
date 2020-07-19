@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo List View Controller-->
+        <scene sceneID="P5u-aB-43m">
+            <objects>
+                <viewController storyboardIdentifier="PhotoListViewController" id="mHO-jm-XMJ" customClass="PhotoListViewController" customModule="FlickerSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6aa-tw-pNg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="odM-bD-Pnv">
+                                <rect key="frame" x="16" y="52" width="382" height="810"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="8" id="6Tm-Yx-cxJ">
+                                    <size key="itemSize" width="270" height="260"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoListCollectionViewCell" id="2Kc-BA-B0s" customClass="PhotoListCollectionViewCell" customModule="FlickerSearch" customModuleProvider="target">
+                                        <rect key="frame" x="56" y="0.0" width="270" height="260"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="260"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-GU-4sk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="200"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAy-RM-CGF">
+                                                    <rect key="frame" x="0.0" y="200" width="270" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="Ro5-Kl-fuM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="SAy-RM-CGF" secondAttribute="bottom" id="6xV-T4-rQO"/>
+                                            <constraint firstItem="Dyn-GU-4sk" firstAttribute="leading" secondItem="2Kc-BA-B0s" secondAttribute="leading" id="9ky-MK-HRd"/>
+                                            <constraint firstItem="SAy-RM-CGF" firstAttribute="top" secondItem="Dyn-GU-4sk" secondAttribute="bottom" id="9wj-Vp-aMQ"/>
+                                            <constraint firstItem="SAy-RM-CGF" firstAttribute="top" secondItem="Dyn-GU-4sk" secondAttribute="bottom" id="J0y-0Z-ICi"/>
+                                            <constraint firstItem="Dyn-GU-4sk" firstAttribute="top" secondItem="2Kc-BA-B0s" secondAttribute="top" id="lv6-hO-Hwz"/>
+                                            <constraint firstItem="SAy-RM-CGF" firstAttribute="leading" secondItem="2Kc-BA-B0s" secondAttribute="leading" id="n5y-CT-Iax"/>
+                                            <constraint firstAttribute="trailing" secondItem="Dyn-GU-4sk" secondAttribute="trailing" id="xHh-Nh-662"/>
+                                            <constraint firstAttribute="trailing" secondItem="SAy-RM-CGF" secondAttribute="trailing" id="y6x-eH-QKL"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="Dyn-GU-4sk" id="oOn-Xf-zqX"/>
+                                            <outlet property="photoTitleLabel" destination="SAy-RM-CGF" id="Sq6-QR-Sii"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="odM-bD-Pnv" firstAttribute="top" secondItem="Zyz-Sb-oeg" secondAttribute="top" constant="8" id="54d-qT-yGx"/>
+                            <constraint firstItem="Zyz-Sb-oeg" firstAttribute="bottom" secondItem="odM-bD-Pnv" secondAttribute="bottom" id="JcW-GQ-uSO"/>
+                            <constraint firstItem="odM-bD-Pnv" firstAttribute="leading" secondItem="Zyz-Sb-oeg" secondAttribute="leading" constant="16" id="kIV-WL-M4x"/>
+                            <constraint firstItem="Zyz-Sb-oeg" firstAttribute="trailing" secondItem="odM-bD-Pnv" secondAttribute="trailing" constant="16" id="sbn-db-B4E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zyz-Sb-oeg"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="odM-bD-Pnv" id="v3b-2Q-kip"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVU-mg-T2h" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-171" y="72"/>
+        </scene>
+    </scenes>
+</document>

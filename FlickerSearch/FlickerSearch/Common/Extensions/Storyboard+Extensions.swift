@@ -10,7 +10,7 @@ import UIKit
 
 extension UIStoryboard {
     enum Storyboard: String {
-        case movies = "Movies"
+        case photos = "Photos"
     }
     
     // MARK: - Convenience Initializers
