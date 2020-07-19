@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 final class PhotoListViewController: BaseViewController {
     
-    //MARK: - IBOutlets
+    // MARK: - IBOutlets
     @IBOutlet weak private var collectionView: UICollectionView!
     
 }

@@ -35,6 +35,7 @@
 		6EBEA93E24C482B0005DA753 /* PhotoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA93D24C482B0005DA753 /* PhotoDTO.swift */; };
 		6EBEA94224C484B8005DA753 /* PhotoListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA94124C484B8005DA753 /* PhotoListCollectionViewCell.swift */; };
 		6EBEA94424C484DC005DA753 /* PhotoListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA94324C484DC005DA753 /* PhotoListCellViewModel.swift */; };
+		6EBEA94624C48797005DA753 /* AppNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA94524C48797005DA753 /* AppNavigator.swift */; };
 		F49816223EAE80DD602822FE /* Pods_FlickerSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE339F2B3ADDD2D6BED785AF /* Pods_FlickerSearchTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		6EBEA93D24C482B0005DA753 /* PhotoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoDTO.swift; path = UI/Photos/PhotoListings/Navigator/PhotoDTO.swift; sourceTree = SOURCE_ROOT; };
 		6EBEA94124C484B8005DA753 /* PhotoListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoListCollectionViewCell.swift; path = UI/Photos/PhotoListings/View/View/PhotoListCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		6EBEA94324C484DC005DA753 /* PhotoListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoListCellViewModel.swift; path = UI/Photos/PhotoListings/View/View/PhotoListCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		6EBEA94524C48797005DA753 /* AppNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppNavigator.swift; path = UI/Photos/PhotoListings/View/View/AppNavigator.swift; sourceTree = SOURCE_ROOT; };
 		72F4024EB3DBE160F6C93480 /* Pods-FlickerSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerSearch.release.xcconfig"; path = "Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch.release.xcconfig"; sourceTree = "<group>"; };
 		7B70709CBF4B0F02CFE95E47 /* Pods_FlickerSearch_FlickerSearchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerSearch_FlickerSearchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B801D15CBEC826EAE44CE92 /* Pods-FlickerSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerSearchTests.release.xcconfig"; path = "Target Support Files/Pods-FlickerSearchTests/Pods-FlickerSearchTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		6EAAA61D24C0EFCD0067F283 /* AppNavigator */ = {
 			isa = PBXGroup;
 			children = (
+				6EBEA94524C48797005DA753 /* AppNavigator.swift */,
 			);
 			path = AppNavigator;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 			files = (
 				6E485C9F24C18FDB0004A099 /* UIViewController+Extension.swift in Sources */,
 				6E485C9D24C18FCA0004A099 /* NibLoadableView.swift in Sources */,
+				6EBEA94624C48797005DA753 /* AppNavigator.swift in Sources */,
 				6E485CA524C193C20004A099 /* BaseViewController.swift in Sources */,
 				6E485CA724C1940E0004A099 /* NoInternetHeaderView.swift in Sources */,
 				6E485C9924C18FB20004A099 /* UIFont+Extension.swift in Sources */,
