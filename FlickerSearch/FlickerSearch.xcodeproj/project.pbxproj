@@ -11,6 +11,9 @@
 		5A5656D4AECA8F4D933276FF /* Pods_FlickerSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AD06F9FC05A4853D8AFCB7 /* Pods_FlickerSearch.framework */; };
 		6E0CDB3324C49543002B096E /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3224C49543002B096E /* Photo+CoreDataClass.swift */; };
 		6E0CDB3624C4973C002B096E /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3524C4973C002B096E /* Photo+CoreDataProperties.swift */; };
+		6E0CDB3824C49D32002B096E /* PhtosRemoteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3724C49D32002B096E /* PhtosRemoteDataStore.swift */; };
+		6E0CDB3B24C49D64002B096E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3A24C49D64002B096E /* Networking.swift */; };
+		6E0CDB3D24C49DF0002B096E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CDB3C24C49DF0002B096E /* NetworkManager.swift */; };
 		6E485C9324C18F7B0004A099 /* Storyboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9224C18F7B0004A099 /* Storyboard+Extensions.swift */; };
 		6E485C9524C18F8A0004A099 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9424C18F8A0004A099 /* UICollectionView+Extension.swift */; };
 		6E485C9724C18F950004A099 /* UIKitReuseIdentifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E485C9624C18F940004A099 /* UIKitReuseIdentifier+Extension.swift */; };
@@ -66,6 +69,9 @@
 		5D707A23FD0277E100BD2388 /* Pods-FlickerSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerSearch.debug.xcconfig"; path = "Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		6E0CDB3224C49543002B096E /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6E0CDB3524C4973C002B096E /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E0CDB3724C49D32002B096E /* PhtosRemoteDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhtosRemoteDataStore.swift; sourceTree = "<group>"; };
+		6E0CDB3A24C49D64002B096E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		6E0CDB3C24C49DF0002B096E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6E485C9224C18F7B0004A099 /* Storyboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extensions.swift"; sourceTree = "<group>"; };
 		6E485C9424C18F8A0004A099 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		6E485C9624C18F940004A099 /* UIKitReuseIdentifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKitReuseIdentifier+Extension.swift"; sourceTree = "<group>"; };
@@ -139,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E0CDB3924C49D58002B096E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6E0CDB3A24C49D64002B096E /* Networking.swift */,
+				6E0CDB3C24C49DF0002B096E /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		6E485CA024C1938B0004A099 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +238,7 @@
 		6EAAA61A24C0EF550067F283 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6E0CDB3924C49D58002B096E /* Networking */,
 				6EBEA92A24C47864005DA753 /* LocalDBManager */,
 				6EAAA62224C0F00C0067F283 /* Extensions */,
 				6EAAA62024C0EFED0067F283 /* ThirdParties */,
@@ -420,6 +436,7 @@
 		6EBEA94F24C48B1B005DA753 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				6E0CDB3724C49D32002B096E /* PhtosRemoteDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -746,10 +763,12 @@
 				6E485C9724C18F950004A099 /* UIKitReuseIdentifier+Extension.swift in Sources */,
 				6E485C9B24C18FBE0004A099 /* AlertPresentable+Extension.swift in Sources */,
 				6E0CDB3324C49543002B096E /* Photo+CoreDataClass.swift in Sources */,
+				6E0CDB3D24C49DF0002B096E /* NetworkManager.swift in Sources */,
 				6E0CDB3624C4973C002B096E /* Photo+CoreDataProperties.swift in Sources */,
 				6EAAA5EF24C0EC7A0067F283 /* FlickerSearch.xcdatamodeld in Sources */,
 				6EBEA94424C484DC005DA753 /* PhotoListCellViewModel.swift in Sources */,
 				6EBEA94224C484B8005DA753 /* PhotoListCollectionViewCell.swift in Sources */,
+				6E0CDB3824C49D32002B096E /* PhtosRemoteDataStore.swift in Sources */,
 				6EBEA94824C4893A005DA753 /* PhotoRequest.swift in Sources */,
 				6EBEA95124C48B3B005DA753 /* PhotosLocalDataSource.swift in Sources */,
 				6EAAA5E524C0EC7A0067F283 /* AppDelegate.swift in Sources */,
@@ -758,6 +777,7 @@
 				6EBEA93A24C47EDF005DA753 /* PhotoListViewController.swift in Sources */,
 				6EBEA92C24C4787C005DA753 /* CoreDataManger.swift in Sources */,
 				6E485CAB24C1944C0004A099 /* Reachability.swift in Sources */,
+				6E0CDB3B24C49D64002B096E /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
