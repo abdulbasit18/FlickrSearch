@@ -8,21 +8,31 @@
 
 import UIKit
 import NVActivityIndicatorView
+import RxCocoa
+import RxSwift
 
 class BaseViewController: UIViewController, NVActivityIndicatorViewable, AlertsPresentable {
     
     var noInternetHeaderView: NoInternetHeaderView!
     let reachability = Reachability()
+    var boundsObserver: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNoInternetHeaderView()
         setReachability()
+        
+        boundsObserver = navigationController?.navigationBar.layer
+            .observe(\.bounds, changeHandler: { [weak self](_, _) in
+                guard let self = self else { return }
+                self.noInternetHeaderView.frame = CGRect(x: 0, y: self.topBarHeight,
+                                                         width: UIScreen.main.bounds.width,
+                                                         height: 40)
+            })
     }
-    
+
     private func setNoInternetHeaderView() {
         noInternetHeaderView = NoInternetHeaderView.loadNib()
-        noInternetHeaderView.frame = CGRect(x: 0, y: topbarHeight, width: UIScreen.main.bounds.width, height: 40)
         noInternetHeaderView.isHidden = true
         self.view.addSubview(noInternetHeaderView)
     }
@@ -42,5 +52,4 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable, AlertsP
         }
         try? reachability?.startNotifier()
     }
-    
 }

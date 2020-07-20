@@ -58,7 +58,7 @@ final class PhotosService: PhotosServiceProtocol {
         /*Shared Subject of photos which will
          be shared between local local photos object and to output the fetched photos*/
         let sharedPhotoSubject = self.photosRepository.outputs
-            .fetchPhotosSubject.share(replay: 1, scope: .whileConnected)
+            .fetchPhotosSubject.share()
         
         //Output Photos Data
         sharedPhotoSubject
@@ -89,6 +89,9 @@ extension PhotosService {
     
     //Outputs photos data
     private func getPhotosData(tag: String) {
+        if self.tags != tag {
+            photoResponse = nil
+        }
         (canFetchPhotos()) ?
             fetchPhotos(page: (photoResponse?.photos.page ?? 0) + 1, tags: tag, apiKey: Constants.Keys.api) :
             cantFetchPhotos()

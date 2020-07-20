@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-    var topbarHeight: CGFloat {
+    var topBarHeight: CGFloat {
         return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }

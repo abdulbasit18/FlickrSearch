@@ -40,7 +40,7 @@ final class PhotoListViewController: BaseViewController {
         viewModel.inputs.viewDidLoadSubject.onNext(nil)
         
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Photos"
+        searchController.searchBar.placeholder = "Search Tags"
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -53,11 +53,10 @@ final class PhotoListViewController: BaseViewController {
     // MARK: - Setup Bindings
     private func setupBindings() {
         
-        searchController.searchBar.rx.searchButtonClicked.subscribe {[weak self] (_) in
-            guard let self = self else { return }
-            let tag = self.searchController.searchBar.text ?? ""
-            self.viewModel.inputs.searchSubject.onNext(tag)
-        }.disposed(by: disposeBag)
+        searchController.searchBar.rx.searchButtonClicked
+            .compactMap {self.searchController.searchBar.text}
+            .bind(to: viewModel.inputs.searchSubject)
+            .disposed(by: disposeBag)
         
         viewModel.outputs.animateLoaderSubject.subscribe(onNext: { [weak self] (shouldLoad) in
             guard let self = self, let shouldLoad = shouldLoad else { return}
@@ -66,10 +65,6 @@ final class PhotoListViewController: BaseViewController {
         
         viewModel.outputs.alertSubject.subscribe(onNext: { [weak self] (alertResponse) in
             self?.showAlert(with: alertResponse.title, and: alertResponse.message)
-        }).disposed(by: disposeBag)
-        
-        viewModel.outputs.dataSubject.subscribe(onNext: { (_) in
-            self.collectionView.reloadData()
         }).disposed(by: disposeBag)
         
         collectionView.rx.reachedBottom.asObservable()

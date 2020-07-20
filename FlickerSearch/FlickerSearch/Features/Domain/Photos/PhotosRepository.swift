@@ -41,6 +41,7 @@ final class PhotosRepository: PhotosRepositoryProtocol {
     // MARK: - Properties
     private let remotePhotosDataSource: PhotosRemoteDataStoreProtocol
     private let localPhotosDataSource: PhotosLocalDataSourceProtocol
+    private var tag = ""
     private let disposeBag = DisposeBag()
     
     // MARK: - Initialisers
@@ -57,13 +58,18 @@ final class PhotosRepository: PhotosRepositoryProtocol {
         /*Shared Subject of photos which will
          be shared between local data store and to output the fetched photos*/
         let sharedPhotosSubject = self.remotePhotosDataSource.outputs.fetchPhotoSubject
-            .share(replay: 1, scope: .whileConnected)
-        
+            .share()
+//        PublishSubject
         //Update local database when photos are fetched
-        sharedPhotosSubject
-            .compactMap {$0.photos.photo}
-            .bind(to: self.localPhotosDataSource.savePhotosSubject)
-            .disposed(by: disposeBag)
+//        sharedPhotosSubject
+//            .compactMap { PublishSubject.just((tag: self.tag, photos: $0.photos.photo ?? [])) }
+//            .bind(to: self.localPhotosDataSource.savePhotosSubject)
+//            .disposed(by: disposeBag)
+        
+        sharedPhotosSubject.subscribe(onNext: { (responseModel) in
+            let saveModel = (tag: self.tag, photos: responseModel.photos.photo ?? [])
+            self.localPhotosDataSource.savePhotosSubject.onNext(saveModel)
+        }).disposed(by: disposeBag)
         
         //Output the fetched photos data
         sharedPhotosSubject
@@ -71,7 +77,7 @@ final class PhotosRepository: PhotosRepositoryProtocol {
         
         //Trigger the local database fetch in case of error
         self.remotePhotosDataSource.outputs.failWithErrorSubject
-            .map {(error: $0, id: nil)}
+            .map {(error: $0, tag: self.tag)}
             .bind(to: localPhotosDataSource.inputs.getPhotosWithIdSubject)
             .disposed(by: disposeBag)
         
@@ -84,5 +90,9 @@ final class PhotosRepository: PhotosRepositoryProtocol {
         self.inputs.getPhotosSubject
             .bind(to: remotePhotosDataSource.inputs.getPhotosSubject)
             .disposed(by: disposeBag)
+        
+        remotePhotosDataSource.inputs.getPhotosSubject.subscribe(onNext: { [weak self] (request) in
+            self?.tag = request.tags
+            }).disposed(by: disposeBag)
     }
 }

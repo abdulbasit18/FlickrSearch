@@ -73,12 +73,12 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     private func setupBindings() {
         
         //Load initial calls on viewDidLoad
-        self.inputs.searchSubject.subscribe(onNext: { (tag) in
+        inputs.searchSubject.subscribe(onNext: { (tag) in
             self.loadView(tag: tag)
             }).disposed(by: disposeBag)
         
         //Call services on reaching collection view scroll bottom
-        self.inputs.reachedBottomSubject
+        inputs.reachedBottomSubject
             .debounce(.milliseconds(100), scheduler: MainScheduler.instance)
             .subscribe { [weak self] (_) in
                 guard let self = self else { return }
@@ -86,58 +86,85 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
         }.disposed(by: disposeBag)
         
         //Call tap handle
-        self.inputs.tapOnCellSubject.subscribe(onNext: { [weak self] (index) in
+        inputs.tapOnCellSubject.subscribe(onNext: { [weak self] (index) in
             self?.didTapOnCell(index: index)
         }).disposed(by: disposeBag)
         
         //Handle loader view
-        self.photosService.outputs.cantFetchPhotosSubject.subscribe { [weak self] (_) in
-            self?.outputs.animateLoaderSubject.onNext(false)
-        }.disposed(by: disposeBag)
-        
+        photosService.outputs.cantFetchPhotosSubject
+            .map {_ in false}
+            .bind(to: outputs.animateLoaderSubject).disposed(by: disposeBag)
+
         // Get photos from service
-        self.photosService.outputs.fetchPhotosSubject.subscribe(onNext: { [weak self] (photos) in
-            guard let self = self else { return }
-            let oldPhotosData = self.getPhotos()
-            let latestValues = oldPhotosData + photos
-            let photoSection = PhotoSection(header: "", items: latestValues)
-            self.dataSubject.accept([photoSection])
+        let sharedPhotoSubject =  photosService.outputs.fetchPhotosSubject.share()
+        
+        sharedPhotoSubject
+            .flatMap {PublishSubject
+                .just([PhotoSection(header: "", items: self.getPhotos() + $0)])}
+            .bind(to: dataSubject)
+            .disposed(by: disposeBag)
+        
+        sharedPhotoSubject.flatMap {_ in PublishSubject.just(false)}
+            .bind(to: self.outputs.animateLoaderSubject)
+            .disposed(by: disposeBag)
+        
+        sharedPhotoSubject.subscribe(onNext: { (_) in
             self.fetchedFromLocalStorage = false
-            self.outputs.animateLoaderSubject.onNext(false)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         // Get data from service in case of an error
-        self.photosService.outputs.failWithErrorSubject.subscribe(onNext: { [weak self] (photos) in
-            guard let self = self else { return }
-            let photoSection = PhotoSection(header: "", items: photos.photos)
-            self.dataSubject.accept([photoSection])
-            self.outputs.animateLoaderSubject.onNext(false)
+        let shareFailSubject =  photosService.outputs.failWithErrorSubject.share()
+        
+        shareFailSubject
+            .flatMap {PublishSubject
+                .just([PhotoSection(header: "", items: $0.photos)])}
+            .bind(to: dataSubject)
+            .disposed(by: disposeBag)
+        
+        shareFailSubject.flatMap {_ in PublishSubject.just(false)}
+            .bind(to: self.outputs.animateLoaderSubject)
+            .disposed(by: disposeBag)
+        
+        shareFailSubject.subscribe { [weak self] (_) in
+            self?.fetchedFromLocalStorage = true
+        }.disposed(by: disposeBag)
+        
+        sharedPhotoSubject.flatMap {_ in PublishSubject.just(false)}
+            .bind(to: self.outputs.animateLoaderSubject)
+            .disposed(by: disposeBag)
+        
+        sharedPhotoSubject.subscribe(onNext: { (photos) in
             self.fetchedFromLocalStorage = true
-            if photos.photos.isEmpty {
+            if photos.isEmpty {
                 self.outputs.alertSubject
                     .onNext((title:"Nothing Found",
                              message: "We couldn't found any photos, please try later"))
                 return
             }
         }).disposed(by: disposeBag)
+
     }
     
     // MARK: - Actions
     func getPhotoListCellViewModel(for index: Int) -> PhotoListCellViewModel {
         let photo = getPhotos()[index]
         let title = photo.title ?? ""
-        let photoImageURL =  ""
+        let photoImageURL =  FlickerPhoto.getImageUrl(model: photo, size: .largeSquare)
         return createPhotoListCellViewModel(photoImageURL: photoImageURL, title: title)
     }
     
     private func createPhotoListCellViewModel(photoImageURL: String, title: String) -> PhotoListCellViewModel {
-        return PhotoListCellViewModel(photoImageUrl: nil,
+        let imgUrl = URL(string: photoImageURL)
+        return PhotoListCellViewModel(photoImageUrl: imgUrl,
                                       title: title,
                                       placeHolderImage: "placeholder")
     }
     
     private func loadView(tag: String) {
         if !fetchedFromLocalStorage {
+            if self.tag == tag {
+                self.dataSubject.accept([])
+            }
             self.tag = tag
             self.outputs.animateLoaderSubject.onNext(true)
             photosService.inputs.getPhotosSubject.onNext(tag)

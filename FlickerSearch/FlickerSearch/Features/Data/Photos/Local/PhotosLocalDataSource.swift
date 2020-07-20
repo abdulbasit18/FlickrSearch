@@ -10,12 +10,13 @@ import Foundation
 import RxSwift
 
 // MARK: - Types
-internal typealias FailedErrorType = (error: Error, id: String?)
-internal typealias FailedPhotosErrorType = (error: Error, photos: [PhotoDTO])
+typealias FailedErrorType = (error: Error, tag: String?)
+typealias FailedPhotosErrorType = (error: Error, photos: [PhotoDTO])
+typealias SavePhotosType = (tag: String, photos: [PhotoDTO])
 
 // MARK: - Protocols
 protocol PhotosLocalDataSourceInputs: class {
-    var savePhotosSubject: PublishSubject<[PhotoDTO]> { get }
+    var savePhotosSubject: PublishSubject<SavePhotosType> { get }
     var deletePhotosSubject: PublishSubject<[PhotoDTO]> { get }
     var updatePhotosSubject: PublishSubject<[PhotoDTO]> { get }
     var deleteAllPhotosSubject: PublishSubject<Void> { get }
@@ -38,7 +39,7 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
     var outputs: PhotosLocalDataSourceOutputs { self }
     
     // MARK: - Inputs
-    var savePhotosSubject = PublishSubject<[PhotoDTO]>()
+    var savePhotosSubject = PublishSubject<SavePhotosType>()
     var deletePhotosSubject = PublishSubject<[PhotoDTO]>()
     var updatePhotosSubject = PublishSubject<[PhotoDTO]>()
     var deleteAllPhotosSubject = PublishSubject<Void>()
@@ -66,7 +67,10 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
         //Save Photos on Invocation
         inputs.savePhotosSubject.subscribe(onNext: { [weak self] (photos) in
             guard let self = self else { return }
-            _ = photos.compactMap(self.convertPhotoDTOToPhoto)
+            self.delete(tag: photos.tag)
+            for photo in photos.photos {
+                _ = self.convertPhotoDTOToPhoto(tag: photos.tag, photoDTO: photo)
+            }
             self.localDBManager.save(entity: self.entity)
         }).disposed(by: disposeBag)
         
@@ -89,18 +93,17 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
         }).disposed(by: disposeBag)
         
         //Get Photos with ID on Invocation
-        // swiftlint:disable force_cast
         inputs.getPhotosWithIdSubject.subscribe(onNext: { [weak self] (request) in
             guard let self = self else { return }
-            let predicate = (request.id != nil) ?
-                Predicate(format: "%k == %@", arguments: ["id", request.id ?? ""])
+            let predicate = (request.tag != nil) ?
+                Predicate(format: "%K == %@", arguments: ["tag", request.tag ?? ""])
                 : nil
-            let result = self.localDBManager.fetchObject(self.entity, predicate: predicate) as! [Photo]
-            let compactResults = result.compactMap(self.convertPhotoToPhotoDTO)
-            self.outputs.getPhotosSubject.onNext((error: request.error, photos: compactResults))
+            let result = self.localDBManager.fetchObject(self.entity, predicate: predicate) as? [Photo]
+            if let compactResults = result?.compactMap(self.convertPhotoToPhotoDTO) {
+                self.outputs.getPhotosSubject.onNext((error: request.error, photos: compactResults))
+            }
             
         }).disposed(by: disposeBag)
-        // swiftlint:enable force_cast
     }
 }
 
@@ -111,12 +114,18 @@ extension PhotosLocalDataSource {
     // MARK: - Internal Utility methods
     
     private func delete(photo: PhotoDTO) {
-        let predicate = Predicate(format: "%k == %@", arguments: ["id", String(photo.id)])
+        let predicate = Predicate(format: "%K == %@", arguments: ["id", String(photo.id)])
         localDBManager.deleteObjects(entity, predicate: predicate )
     }
     
+    private func delete(tag: String) {
+        let predicate = Predicate(format: "%K == %@", arguments: ["tag", tag])
+        localDBManager.deleteObjects(entity, predicate: predicate )
+        self.localDBManager.save(entity: self.entity)
+    }
+    
     private func update(photo: PhotoDTO) {
-        let predicate = Predicate(format: "%k == %@", arguments: ["id", String(photo.id)])
+        let predicate = Predicate(format: "%K == %@", arguments: ["id", String(photo.id)])
         guard let data = localDBManager.doesThisObjectExist(entity, predicate: predicate) as? Photo
             else { return }
         
@@ -125,21 +134,23 @@ extension PhotosLocalDataSource {
         data.secret = photo.secret
         data.server = photo.server
         data.title = photo.title
-
+        data.farm = Int64(photo.farm ?? 0)
+        
         localDBManager.save(entity: entity)
         
     }
     
     private func convertPhotoToPhotoDTO(photo: Photo) -> PhotoDTO {
-        PhotoDTO(id: photo.id ?? "",
-                        owner: photo.owner,
-                        secret: photo.secret,
-                        server: photo.server,
-                        title: photo.title
+        PhotoDTO(farm: Int(photo.farm),
+                 id: photo.id ?? "",
+                 owner: photo.owner,
+                 secret: photo.secret,
+                 server: photo.server,
+                 title: photo.title
         )
     }
     
-    private func convertPhotoDTOToPhoto(photoDTO: PhotoDTO) -> Photo {
-        return Photo(photoDTO: photoDTO, context: localDBManager.context)
+    private func convertPhotoDTOToPhoto(tag: String, photoDTO: PhotoDTO) -> Photo {
+        return Photo(tag: tag, photoDTO: photoDTO, context: localDBManager.context)
     }
 }

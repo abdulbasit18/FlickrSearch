@@ -22,7 +22,7 @@ public class Photo: NSManagedObject {
         super.init(entity: entityDesc!, insertInto: context)
     }
 
-    init(photoDTO: PhotoDTO, context: NSManagedObjectContext) {
+    init(tag: String, photoDTO: PhotoDTO, context: NSManagedObjectContext) {
 
         let entityDesc = NSEntityDescription.entity(forEntityName: "Photo", in: context)
         super.init(entity: entityDesc!, insertInto: context)
@@ -32,5 +32,6 @@ public class Photo: NSManagedObject {
         self.secret = photoDTO.secret
         self.server = photoDTO.server
         self.title = photoDTO.title
+        self.tag = tag
     }
 }

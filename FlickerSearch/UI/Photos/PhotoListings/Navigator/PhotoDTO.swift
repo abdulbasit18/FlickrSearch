@@ -10,6 +10,7 @@ import Foundation
 import RxDataSources
 
 struct PhotoDTO: Decodable {
+    let farm: Int?
     let id: String
     let owner: String?
     let secret: String?
@@ -20,7 +21,7 @@ struct PhotoDTO: Decodable {
 struct PhotoSection {
     var header: String
     var items: [Item]
-    var uniqueId: String = "Trending"
+    var uniqueId: String = "1"
 }
 
 extension PhotoSection: AnimatableSectionModelType {

@@ -73,6 +73,7 @@ class NetworkManager: Networking {
                                      headers: headers)
             .validate()
             .responseDecodable { (response: DataResponse<T, AFError>) in
+                print(response)
                 completion(APIResponse(result: response.result))
         }
         

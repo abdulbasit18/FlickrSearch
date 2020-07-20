@@ -17,4 +17,5 @@ struct PhotoRequestModel: Encodable {
     let format = "json"
     let per_page = "10"
     let nojsoncallback = "1"
+    let safe_search = "1"
 }

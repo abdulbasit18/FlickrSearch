@@ -20,5 +20,7 @@ extension Photo {
     @NSManaged public var secret: String?
     @NSManaged public var server: String?
     @NSManaged public var title: String?
+    @NSManaged public var tag: String?
+    @NSManaged public var farm: Int64
     
 }
