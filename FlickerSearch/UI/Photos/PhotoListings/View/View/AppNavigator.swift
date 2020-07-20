@@ -8,7 +8,6 @@
 
 import UIKit
 
-// swiftlint:disable force_cast
 protocol AppNavigatorProtocol {
     func installRoot(in window: UIWindow)
 }
@@ -20,21 +19,20 @@ struct AppNavigator { //: AppNavigatorProtocol {
         let storyboard = UIStoryboard(storyboard: .photos)
         let photoListController: PhotoListViewController = storyboard.initialViewController()
         let rootController = AppNavigationController(rootViewController: photoListController)
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let coreDataManager = CoreDataManger(context: context)
-        //View Model create & setup
-        let remoteDataSource = PhotosRemoteDataStore()
-        let localDataSource = PhotosLocalDataSource(localDBManager: coreDataManager)
-        let repository = PhotosRepository(remotePhotosDataSource: remoteDataSource,
-                                          localPhotosDataSource: localDataSource)
-        let service = PhotosService(photosRepository: repository)
-        let navigator = PhotoListNavigator(navigationController: rootController)
-        let viewModel = PhotosListViewModel(photosService: service,
-                                            navigator: navigator)
-        
-        photoListController.viewModel = viewModel
-        
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            let coreDataManager = CoreDataManger(context: context)
+            //View Model create & setup
+            let remoteDataSource = PhotosRemoteDataStore()
+            let localDataSource = PhotosLocalDataSource(localDBManager: coreDataManager)
+            let repository = PhotosRepository(remotePhotosDataSource: remoteDataSource,
+                                              localPhotosDataSource: localDataSource)
+            let service = PhotosService(photosRepository: repository)
+            let navigator = PhotoListNavigator(navigationController: rootController)
+            let viewModel = PhotosListViewModel(photosService: service,
+                                                navigator: navigator)
+            
+            photoListController.viewModel = viewModel
+        }
         window.rootViewController = rootController
     }
 }
-// swiftlint:enable force_cast

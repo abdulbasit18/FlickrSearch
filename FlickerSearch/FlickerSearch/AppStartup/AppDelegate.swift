@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         navigator.installRoot(into: window!)
         window?.makeKeyAndVisible()
+        
+        if let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path {
+            print("Documents Directory: \(documentsPath)")
+        }
         return true
     }
 
@@ -34,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "FlickerSearch")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
 
                 fatalError("Unresolved error \(error), \(error.userInfo)")
