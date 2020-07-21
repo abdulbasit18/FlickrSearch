@@ -10,6 +10,7 @@
         <!--Photo List View Controller-->
         <scene sceneID="P5u-aB-43m">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVU-mg-T2h" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PhotoListViewController" id="mHO-jm-XMJ" customClass="PhotoListViewController" customModule="FlickerSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6aa-tw-pNg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -77,9 +78,43 @@
                         <outlet property="collectionView" destination="odM-bD-Pnv" id="v3b-2Q-kip"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EVU-mg-T2h" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-171" y="72"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="R90-L8-swo">
+            <objects>
+                <viewController id="YXp-ig-ndR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fHO-V1-ZgY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oof-rK-kcl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="298.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDi-yv-HYC">
+                                <rect key="frame" x="0.0" y="382.5" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kDi-yv-HYC" firstAttribute="top" secondItem="oof-rK-kcl" secondAttribute="bottom" constant="40" id="Due-Ya-g2a"/>
+                            <constraint firstItem="oof-rK-kcl" firstAttribute="height" secondItem="fHO-V1-ZgY" secondAttribute="height" multiplier="1:3" id="MV7-SC-TOi"/>
+                            <constraint firstItem="oof-rK-kcl" firstAttribute="trailing" secondItem="qYm-zA-l21" secondAttribute="trailing" id="QDd-9c-ZgZ"/>
+                            <constraint firstItem="oof-rK-kcl" firstAttribute="leading" secondItem="qYm-zA-l21" secondAttribute="leading" id="WbX-pX-Wpf"/>
+                            <constraint firstItem="kDi-yv-HYC" firstAttribute="leading" secondItem="qYm-zA-l21" secondAttribute="leading" id="fC7-YV-hJh"/>
+                            <constraint firstItem="kDi-yv-HYC" firstAttribute="trailing" secondItem="qYm-zA-l21" secondAttribute="trailing" id="lLM-S8-k2Q"/>
+                            <constraint firstItem="oof-rK-kcl" firstAttribute="top" secondItem="qYm-zA-l21" secondAttribute="top" id="t84-v3-h3N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qYm-zA-l21"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8bq-Gv-AO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571.01449275362324" y="52.901785714285715"/>
         </scene>
     </scenes>
 </document>
