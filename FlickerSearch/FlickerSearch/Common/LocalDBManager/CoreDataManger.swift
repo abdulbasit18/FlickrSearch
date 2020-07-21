@@ -35,8 +35,8 @@ class CoreDataManger {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         var data: [NSManagedObject]?
-        if predicate != nil {
-            fetchRequest.predicate = NSPredicate(format: predicate!.format, argumentArray: predicate!.arguments)
+        if let predicate = predicate {
+            fetchRequest.predicate = NSPredicate(format: predicate.format, argumentArray: predicate.arguments)
         }
         do {
             data = try context.fetch(fetchRequest) as? [NSManagedObject]

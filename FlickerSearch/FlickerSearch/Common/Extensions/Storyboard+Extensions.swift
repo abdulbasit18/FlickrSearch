@@ -10,7 +10,7 @@ import UIKit
 
 extension UIStoryboard {
     enum Storyboard: String {
-        case movies = "Movies"
+        case photos = "Photos"
     }
     
     // MARK: - Convenience Initializers
@@ -23,6 +23,7 @@ extension UIStoryboard {
     
     func initialViewController<T: UIViewController>() -> T {
         guard let viewController = instantiateInitialViewController() as? T else {
+
             fatalError("Couldn't instantiate view controller with identifier \(T.self) ")
         }
         
