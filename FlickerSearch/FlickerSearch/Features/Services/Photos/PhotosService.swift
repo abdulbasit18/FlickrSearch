@@ -57,8 +57,30 @@ final class PhotosService: PhotosServiceProtocol {
     private func setupBindings() {
         /*Shared Subject of photos which will
          be shared between local local photos object and to output the fetched photos*/
+        
+        //*************** Shared *************** //
+        
         let sharedPhotoSubject = self.photosRepository.outputs
             .fetchPhotosSubject.share()
+        
+        //*************** End *************** //
+        
+        //*************** Inputs *************** //
+        
+        //Get Photos input call
+        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (tag) in
+            guard let self = self else { return }
+            self.getPhotosData(tag: tag)
+        }).disposed(by: disposeBag)
+        
+        //Save Data locally
+        sharedPhotoSubject.subscribe(onNext: { [weak self] (photos) in
+            self?.photoResponse = photos
+        }).disposed(by: disposeBag)
+        
+        //*************** End *************** //
+        
+        //*************** Outputs *************** //
         
         //Output Photos Data
         sharedPhotoSubject
@@ -66,21 +88,13 @@ final class PhotosService: PhotosServiceProtocol {
             .bind(to: outputs.fetchPhotosSubject)
             .disposed(by: disposeBag)
         
-        //Save Data locally
-        sharedPhotoSubject.subscribe(onNext: { [weak self] (photos) in
-            self?.photoResponse = photos
-        }).disposed(by: disposeBag)
-        
         //Output Data in case of an error
         self.photosRepository.outputs.FailWithErrorSubject
             .bind(to: outputs.failWithErrorSubject)
             .disposed(by: disposeBag)
         
-        //Get Photos input call
-        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (tag) in
-            guard let self = self else { return }
-            self.getPhotosData(tag: tag)
-        }).disposed(by: disposeBag)
+        //*************** End *************** //
+        
     }
 }
 
@@ -114,6 +128,7 @@ extension PhotosService {
     
     //Output photos can not be fetched
     private func cantFetchPhotos() {
+        
         outputs.cantFetchPhotosSubject.onNext(nil)
     }
 }

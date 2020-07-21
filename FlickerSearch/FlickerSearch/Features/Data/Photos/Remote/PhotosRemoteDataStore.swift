@@ -26,7 +26,6 @@ protocol PhotosRemoteDataStoreProtocol: PhotosRemoteDataInputs, PhotosRemoteData
 }
 
 // MARK: - PhotosRemoteDataStore Implementation
-
 final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
     
     var outputs: PhotosRemoteDataOutputs { self }
@@ -54,10 +53,15 @@ final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
     // MARK: - Bindings
     
     private func setupBindings() {
+        
+        //*************** Inputs *************** //
+        
         // Calling photos service on invocation
         inputs.getPhotosSubject.subscribe(onNext: { [weak self] (parameters) in
             self?.getPhotos(parameters: parameters)
         }).disposed(by: disposeBag)
+        
+        //*************** End *************** //
     }
     
     // MARK: - Networking
@@ -68,12 +72,17 @@ final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
 
         networkManager.get(request: request) { [weak self] (response: APIResponse<PhotoResponseModel>)  in
             guard let self = self else { return }
+            
+            //*************** Outputs *************** //
+            
             switch response.result {
             case .success(let data):
                     self.outputs.fetchPhotoSubject.onNext(data)
             case .failure(let error):
                     self.outputs.failWithErrorSubject.onNext(error)
             }
+            
+            //*************** End *************** //
         }
     }
 }

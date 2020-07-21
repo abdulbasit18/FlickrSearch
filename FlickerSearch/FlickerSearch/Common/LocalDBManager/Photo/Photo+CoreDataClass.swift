@@ -33,5 +33,6 @@ public class Photo: NSManagedObject {
         self.server = photoDTO.server
         self.title = photoDTO.title
         self.tag = tag
+        self.farm = Int64(photoDTO.farm ?? 0)
     }
 }

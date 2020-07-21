@@ -55,44 +55,52 @@ final class PhotosRepository: PhotosRepositoryProtocol {
     
     // MARK: - Bindingas
     private func setupBindings() {
+        
+        //*************** Shared *************** //
+        
         /*Shared Subject of photos which will
          be shared between local data store and to output the fetched photos*/
         let sharedPhotosSubject = self.remotePhotosDataSource.outputs.fetchPhotoSubject
             .share()
-//        PublishSubject
+        
+        //*************** End *************** //
+        
+        //*************** Inputs *************** //
+        
         //Update local database when photos are fetched
-//        sharedPhotosSubject
-//            .compactMap { PublishSubject.just((tag: self.tag, photos: $0.photos.photo ?? [])) }
-//            .bind(to: self.localPhotosDataSource.savePhotosSubject)
-//            .disposed(by: disposeBag)
-        
-        sharedPhotosSubject.subscribe(onNext: { (responseModel) in
-            let saveModel = (tag: self.tag, photos: responseModel.photos.photo ?? [])
-            self.localPhotosDataSource.savePhotosSubject.onNext(saveModel)
-        }).disposed(by: disposeBag)
-        
-        //Output the fetched photos data
         sharedPhotosSubject
-            .bind(to: outputs.fetchPhotosSubject).disposed(by: disposeBag)
+            //Convert model into SavePhotosType
+            .flatMap {PublishSubject.just((tag: self.tag, photos: $0.photos.photo ?? []))}
+            .bind(to: localPhotosDataSource.savePhotosSubject).disposed(by: disposeBag)
         
         //Trigger the local database fetch in case of error
-        self.remotePhotosDataSource.outputs.failWithErrorSubject
+        remotePhotosDataSource.outputs.failWithErrorSubject
             .map {(error: $0, tag: self.tag)}
             .bind(to: localPhotosDataSource.inputs.getPhotosWithIdSubject)
             .disposed(by: disposeBag)
         
-        //Fetch photos data from local database in case of error
-        self.localPhotosDataSource.outputs.getPhotosSubject
-            .bind(to: outputs.FailWithErrorSubject)
-            .disposed(by: disposeBag)
-        
         //Call fetch photos when triggered
-        self.inputs.getPhotosSubject
+        inputs.getPhotosSubject
             .bind(to: remotePhotosDataSource.inputs.getPhotosSubject)
             .disposed(by: disposeBag)
         
         remotePhotosDataSource.inputs.getPhotosSubject.subscribe(onNext: { [weak self] (request) in
             self?.tag = request.tags
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
+        
+        //*************** End *************** //
+        
+        //*************** Outputs *************** //
+        
+        //Output the fetched photos data
+        sharedPhotosSubject
+            .bind(to: outputs.fetchPhotosSubject).disposed(by: disposeBag)
+        
+        //Fetch photos data from local database in case of error
+        localPhotosDataSource.outputs.getPhotosSubject
+            .bind(to: outputs.FailWithErrorSubject)
+            .disposed(by: disposeBag)
+        
+        //*************** End *************** //
     }
 }

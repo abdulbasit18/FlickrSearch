@@ -57,18 +57,20 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
     init(localDBManager: CoreDataManger) {
         self.localDBManager = localDBManager
         
-        //Setup Rx Binings
+        //Setup Rx Bindings
         setupBindings()
     }
     
     // MARK: - Bindings
     private func setupBindings() {
         
+        //*************** Inputs *************** //
+        
         //Save Photos on Invocation
         inputs.savePhotosSubject.subscribe(onNext: { [weak self] (photos) in
             guard let self = self else { return }
-            self.delete(tag: photos.tag)
             for photo in photos.photos {
+                self.delete(photo: photo)
                 _ = self.convertPhotoDTOToPhoto(tag: photos.tag, photoDTO: photo)
             }
             self.localDBManager.save(entity: self.entity)
@@ -100,10 +102,15 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
                 : nil
             let result = self.localDBManager.fetchObject(self.entity, predicate: predicate) as? [Photo]
             if let compactResults = result?.compactMap(self.convertPhotoToPhotoDTO) {
+                
+                //*************** Outputs *************** //
                 self.outputs.getPhotosSubject.onNext((error: request.error, photos: compactResults))
+                //*************** End *************** //
             }
             
         }).disposed(by: disposeBag)
+        
+        //*************** End *************** //
     }
 }
 
@@ -121,7 +128,7 @@ extension PhotosLocalDataSource {
     private func delete(tag: String) {
         let predicate = Predicate(format: "%K == %@", arguments: ["tag", tag])
         localDBManager.deleteObjects(entity, predicate: predicate )
-        self.localDBManager.save(entity: self.entity)
+        localDBManager.save(entity: self.entity)
     }
     
     private func update(photo: PhotoDTO) {

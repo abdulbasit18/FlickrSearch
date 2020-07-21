@@ -134,7 +134,7 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
             .disposed(by: disposeBag)
         
         sharedPhotoSubject.subscribe(onNext: { (photos) in
-            self.fetchedFromLocalStorage = true
+//            self.fetchedFromLocalStorage = true
             if photos.isEmpty {
                 self.outputs.alertSubject
                     .onNext((title:"Nothing Found",
@@ -162,7 +162,7 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     
     private func loadView(tag: String) {
         if !fetchedFromLocalStorage {
-            if self.tag == tag {
+            if self.tag != tag {
                 self.dataSubject.accept([])
             }
             self.tag = tag
