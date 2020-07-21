@@ -53,24 +53,15 @@ final class PhotoListViewController: BaseViewController {
     // MARK: - Setup Bindings
     private func setupBindings() {
         
-        searchController.searchBar.rx.searchButtonClicked
-            .compactMap {self.searchController.searchBar.text}
-            .bind(to: viewModel.inputs.searchSubject)
-            .disposed(by: disposeBag)
+        //*************** Inputs *************** //
         
+        // Loader Animation
         viewModel.outputs.animateLoaderSubject.subscribe(onNext: { [weak self] (shouldLoad) in
             guard let self = self, let shouldLoad = shouldLoad else { return}
             shouldLoad ? self.startAnimating() : self.stopAnimating()
         }).disposed(by: disposeBag)
         
-        viewModel.outputs.alertSubject.subscribe(onNext: { [weak self] (alertResponse) in
-            self?.showAlert(with: alertResponse.title, and: alertResponse.message)
-        }).disposed(by: disposeBag)
-        
-        collectionView.rx.reachedBottom.asObservable()
-            .bind(to: viewModel.inputs.reachedBottomSubject)
-            .disposed(by: disposeBag)
-        
+        // Collection view Bindings
         let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
             configureCell: { [weak self] _, _, indexPath, _ in
                 let cell: PhotoListCollectionViewCell = (self?.collectionView.dequeueReusableCell(for: indexPath))!
@@ -85,8 +76,33 @@ final class PhotoListViewController: BaseViewController {
         viewModel.dataSubject
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        //*************** End *************** //
+        
+        //*************** Outputs *************** //
+        
+        //Scroll to bottom check
+        collectionView.rx.reachedBottom.asObservable()
+            .bind(to: viewModel.inputs.reachedBottomSubject)
+            .disposed(by: disposeBag)
+        
+        //Search Action
+        searchController.searchBar.rx.searchButtonClicked
+            .compactMap {self.searchController.searchBar.text}
+            .bind(to: viewModel.inputs.searchSubject)
+            .disposed(by: disposeBag)
+        
+        //Alert
+        viewModel.outputs.alertSubject.subscribe(onNext: { [weak self] (alertResponse) in
+            self?.showAlert(with: alertResponse.title, and: alertResponse.message)
+        }).disposed(by: disposeBag)
+        
+        //*************** End *************** //
+        
     }
 }
+
+// MARK: - Extensions
 
 extension PhotoListViewController: UICollectionViewDelegate {
     

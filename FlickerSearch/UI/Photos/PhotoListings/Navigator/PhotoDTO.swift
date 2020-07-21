@@ -40,9 +40,9 @@ extension PhotoSection: AnimatableSectionModelType {
 
 extension PhotoDTO: IdentifiableType, Equatable {
     
-    typealias Identity = Int
+    typealias Identity = UUID
     
-    var identity: Int {
-        return Int(id) ?? 0
+    var identity: UUID {
+        return UUID()
     }
 }

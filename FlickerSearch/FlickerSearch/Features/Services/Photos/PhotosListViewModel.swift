@@ -72,10 +72,22 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     // MARK: - Bindings
     private func setupBindings() {
         
+        //Bind Inputs
+        inputBindings()
+        
+        //Bind Outputs
+        outputBindings()
+        
+    }
+    
+    //*************** Inputs *************** //
+    
+    private func inputBindings() {
+        
         //Load initial calls on viewDidLoad
         inputs.searchSubject.subscribe(onNext: { (tag) in
             self.loadView(tag: tag)
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         //Call services on reaching collection view scroll bottom
         inputs.reachedBottomSubject
@@ -94,47 +106,36 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
         photosService.outputs.cantFetchPhotosSubject
             .map {_ in false}
             .bind(to: outputs.animateLoaderSubject).disposed(by: disposeBag)
-
-        // Get photos from service
+        
+    }
+    
+    //*************** End *************** //
+    
+    //*************** Outputs *************** //
+    
+    private func outputBindings() {
+        
+        // Shared Photo Subject
         let sharedPhotoSubject =  photosService.outputs.fetchPhotosSubject.share()
         
+        // Get photos from remote and add the results with previous data
         sharedPhotoSubject
             .flatMap {PublishSubject
                 .just([PhotoSection(header: "", items: self.getPhotos() + $0)])}
             .bind(to: dataSubject)
             .disposed(by: disposeBag)
         
+        // Update loader
         sharedPhotoSubject.flatMap {_ in PublishSubject.just(false)}
             .bind(to: self.outputs.animateLoaderSubject)
             .disposed(by: disposeBag)
         
+        // Set check
         sharedPhotoSubject.subscribe(onNext: { (_) in
             self.fetchedFromLocalStorage = false
-            }).disposed(by: disposeBag)
-        
-        // Get data from service in case of an error
-        let shareFailSubject =  photosService.outputs.failWithErrorSubject.share()
-        
-        shareFailSubject
-            .flatMap {PublishSubject
-                .just([PhotoSection(header: "", items: $0.photos)])}
-            .bind(to: dataSubject)
-            .disposed(by: disposeBag)
-        
-        shareFailSubject.flatMap {_ in PublishSubject.just(false)}
-            .bind(to: self.outputs.animateLoaderSubject)
-            .disposed(by: disposeBag)
-        
-        shareFailSubject.subscribe { [weak self] (_) in
-            self?.fetchedFromLocalStorage = true
-        }.disposed(by: disposeBag)
-        
-        sharedPhotoSubject.flatMap {_ in PublishSubject.just(false)}
-            .bind(to: self.outputs.animateLoaderSubject)
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         sharedPhotoSubject.subscribe(onNext: { (photos) in
-//            self.fetchedFromLocalStorage = true
             if photos.isEmpty {
                 self.outputs.alertSubject
                     .onNext((title:"Nothing Found",
@@ -142,8 +143,28 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
                 return
             }
         }).disposed(by: disposeBag)
-
+        
+        // Get data from service in case of an error
+        let shareFailSubject =  photosService.outputs.failWithErrorSubject.share()
+        
+        //Get Data from Local
+        shareFailSubject
+            .flatMap {PublishSubject
+                .just([PhotoSection(header: "", items: $0.photos)])}
+            .bind(to: dataSubject)
+            .disposed(by: disposeBag)
+        //Upload loader
+        shareFailSubject.flatMap {_ in PublishSubject.just(false)}
+            .bind(to: self.outputs.animateLoaderSubject)
+            .disposed(by: disposeBag)
+        // Set check
+        shareFailSubject.subscribe { [weak self] (_) in
+            self?.fetchedFromLocalStorage = true
+        }.disposed(by: disposeBag)
+        
     }
+    
+    //*************** End *************** //
     
     // MARK: - Actions
     func getPhotoListCellViewModel(for index: Int) -> PhotoListCellViewModel {

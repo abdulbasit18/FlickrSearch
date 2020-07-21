@@ -22,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigator.installRoot(into: window!)
         window?.makeKeyAndVisible()
         
-        if let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path {
-            print("Documents Directory: \(documentsPath)")
-        }
         return true
     }
 

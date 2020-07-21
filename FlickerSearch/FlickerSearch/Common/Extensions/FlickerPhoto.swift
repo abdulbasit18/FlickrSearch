@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 final class FlickerPhoto {
     
     static func getImageUrl(model: PhotoDTO, size: Size ) -> String {
