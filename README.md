@@ -1,5 +1,5 @@
 # FlickrSearch
-<p align="center"><a href="https://www.hackerrank.com/marinskiy"><img src="https://phandroid.com/wp-content/uploads/2013/05/Flickr-for-Android-banner.png" ></a></p>
+<p align="center"><img src="https://phandroid.com/wp-content/uploads/2013/05/Flickr-for-Android-banner.png" ></a></p>
 
 ## Prereqs
 
