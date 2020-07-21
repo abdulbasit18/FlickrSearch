@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 
-class PhotoDetailViewController: BaseViewController {
+final class PhotoDetailViewController: BaseViewController {
     
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
-
+    
+    var viewModel: PhotoDetailViewModelProtocol!
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupBindings()
     }
     
     private func setupUI() {
@@ -24,9 +29,19 @@ class PhotoDetailViewController: BaseViewController {
         titleLabel.textAlignment = .center
     }
     
-    func fillUI(with data: PhotoDTO) {
-        titleLabel.text = data.title
+    private func setupBindings() {
         
+        viewModel.fillUISubject.subscribe(onNext: { [weak self] (data) in
+            self?.fillUI(with: data)
+            }).disposed(by: disposeBag)
+        
+        viewModel.viewDidLoadSubject.onNext(nil)
+    }
+    
+    func fillUI(with data: PhotoDetailData) {
+        titleLabel.text = data.title
+        photoImageView.sd_setImage(with: data.imageURL,
+                                   placeholderImage: UIImage(named: data.placeholderImage), completed: nil)
     }
     
 }

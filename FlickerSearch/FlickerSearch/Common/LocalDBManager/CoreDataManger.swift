@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class CoreDataManger {
+final class CoreDataManger {
     
     let context: NSManagedObjectContext
     

@@ -20,6 +20,14 @@ final class PhotoListNavigator: PhotoListNavigatorProtocol {
     }
     
     func navigateToDetail(with photo: PhotoDTO) {
+        
+        // controller create & setup
+        let storyboard = UIStoryboard(storyboard: .photos)
+        let movieDetailController: PhotoDetailViewController = storyboard.instantiateViewController()
+        //View Model create & setup
+        let viewModel = PhotoDetailViewModel(photo: photo)
+        movieDetailController.viewModel = viewModel
+        navigationController?.pushViewController(movieDetailController, animated: true)
 
     }
 }

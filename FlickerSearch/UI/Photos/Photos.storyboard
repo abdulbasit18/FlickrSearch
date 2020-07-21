@@ -81,15 +81,15 @@
             </objects>
             <point key="canvasLocation" x="-171" y="72"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Detail View Controller-->
         <scene sceneID="R90-L8-swo">
             <objects>
-                <viewController id="YXp-ig-ndR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoDetailViewController" id="YXp-ig-ndR" customClass="PhotoDetailViewController" customModule="FlickerSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHO-V1-ZgY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oof-rK-kcl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oof-rK-kcl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="298.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDi-yv-HYC">
@@ -111,10 +111,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qYm-zA-l21"/>
                     </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="oof-rK-kcl" id="XLP-vJ-HbO"/>
+                        <outlet property="titleLabel" destination="kDi-yv-HYC" id="sgl-2E-PVK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bq-Gv-AO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="571.01449275362324" y="52.901785714285715"/>
+            <point key="canvasLocation" x="578" y="72"/>
         </scene>
     </scenes>
 </document>
