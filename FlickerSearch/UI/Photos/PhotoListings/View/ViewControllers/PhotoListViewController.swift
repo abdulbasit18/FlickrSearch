@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 import RxSwift
 import RxDataSources
 

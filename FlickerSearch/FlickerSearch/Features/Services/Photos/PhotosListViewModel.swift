@@ -153,10 +153,12 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
                 .just([PhotoSection(header: "", items: $0.photos)])}
             .bind(to: dataSubject)
             .disposed(by: disposeBag)
+        
         //Upload loader
         shareFailSubject.flatMap {_ in PublishSubject.just(false)}
             .bind(to: self.outputs.animateLoaderSubject)
             .disposed(by: disposeBag)
+        
         // Set check
         shareFailSubject.subscribe { [weak self] (_) in
             self?.fetchedFromLocalStorage = true
@@ -182,14 +184,12 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     }
     
     private func loadView(tag: String) {
-        if !fetchedFromLocalStorage {
-            if self.tag != tag {
-                self.dataSubject.accept([])
-            }
-            self.tag = tag
-            self.outputs.animateLoaderSubject.onNext(true)
-            photosService.inputs.getPhotosSubject.onNext(tag)
+        if self.tag != tag {
+            self.dataSubject.accept([])
         }
+        self.tag = tag
+        self.outputs.animateLoaderSubject.onNext(true)
+        photosService.inputs.getPhotosSubject.onNext(tag)
     }
     
     private func didTapOnCell(index: Int) {

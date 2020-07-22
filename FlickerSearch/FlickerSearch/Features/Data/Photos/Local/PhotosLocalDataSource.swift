@@ -20,7 +20,7 @@ protocol PhotosLocalDataSourceInputs: class {
     var deletePhotosSubject: PublishSubject<[PhotoDTO]> { get }
     var updatePhotosSubject: PublishSubject<[PhotoDTO]> { get }
     var deleteAllPhotosSubject: PublishSubject<Void> { get }
-    var getPhotosWithIdSubject: PublishSubject<FailedErrorType> { get }
+    var getPhotosWithTagSubject: PublishSubject<FailedErrorType> { get }
 }
 
 protocol PhotosLocalDataSourceOutputs: class {
@@ -43,7 +43,7 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
     var deletePhotosSubject = PublishSubject<[PhotoDTO]>()
     var updatePhotosSubject = PublishSubject<[PhotoDTO]>()
     var deleteAllPhotosSubject = PublishSubject<Void>()
-    var getPhotosWithIdSubject = PublishSubject<FailedErrorType>()
+    var getPhotosWithTagSubject = PublishSubject<FailedErrorType>()
     
     // MARK: - Outputs
     var getPhotosSubject = PublishSubject<FailedPhotosErrorType>()
@@ -95,7 +95,7 @@ final class PhotosLocalDataSource: PhotosLocalDataSourceProtocol {
         }).disposed(by: disposeBag)
         
         //Get Photos with ID on Invocation
-        inputs.getPhotosWithIdSubject.subscribe(onNext: { [weak self] (request) in
+        inputs.getPhotosWithTagSubject.subscribe(onNext: { [weak self] (request) in
             guard let self = self else { return }
             let predicate = (request.tag != nil) ?
                 Predicate(format: "%K == %@", arguments: ["tag", request.tag ?? ""])

@@ -23,11 +23,11 @@ final class PhotoListNavigator: PhotoListNavigatorProtocol {
         
         // controller create & setup
         let storyboard = UIStoryboard(storyboard: .photos)
-        let movieDetailController: PhotoDetailViewController = storyboard.instantiateViewController()
+        let photoDetailController: PhotoDetailViewController = storyboard.instantiateViewController()
         //View Model create & setup
         let viewModel = PhotoDetailViewModel(photo: photo)
-        movieDetailController.viewModel = viewModel
-        navigationController?.pushViewController(movieDetailController, animated: true)
+        photoDetailController.viewModel = viewModel
+        navigationController?.pushViewController(photoDetailController, animated: true)
 
     }
 }

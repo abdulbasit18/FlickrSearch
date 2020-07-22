@@ -76,7 +76,7 @@ final class PhotosRepository: PhotosRepositoryProtocol {
         //Trigger the local database fetch in case of error
         remotePhotosDataSource.outputs.failWithErrorSubject
             .map {(error: $0, tag: self.tag)}
-            .bind(to: localPhotosDataSource.inputs.getPhotosWithIdSubject)
+            .bind(to: localPhotosDataSource.inputs.getPhotosWithTagSubject)
             .disposed(by: disposeBag)
         
         //Call fetch photos when triggered

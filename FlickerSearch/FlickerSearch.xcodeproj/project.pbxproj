@@ -466,18 +466,18 @@
 			isa = PBXGroup;
 			children = (
 				6EBEA94024C483FB005DA753 /* ViewControllers */,
-				6EBEA93F24C483F4005DA753 /* View */,
+				6EBEA93F24C483F4005DA753 /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		6EBEA93F24C483F4005DA753 /* View */ = {
+		6EBEA93F24C483F4005DA753 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				6EBEA94124C484B8005DA753 /* PhotoListCollectionViewCell.swift */,
 				6EBEA94324C484DC005DA753 /* PhotoListCellViewModel.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		6EBEA94024C483FB005DA753 /* ViewControllers */ = {

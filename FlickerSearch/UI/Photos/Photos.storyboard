@@ -10,7 +10,6 @@
         <!--Photo List View Controller-->
         <scene sceneID="P5u-aB-43m">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EVU-mg-T2h" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PhotoListViewController" id="mHO-jm-XMJ" customClass="PhotoListViewController" customModule="FlickerSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6aa-tw-pNg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -78,6 +77,7 @@
                         <outlet property="collectionView" destination="odM-bD-Pnv" id="v3b-2Q-kip"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVU-mg-T2h" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-171" y="72"/>
         </scene>
