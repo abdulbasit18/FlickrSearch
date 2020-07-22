@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class PhotoListCollectionViewCell: UICollectionViewCell {
+final class PhotoListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var photoTitleLabel: UILabel!

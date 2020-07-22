@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (5.2.1)
+  - Alamofire (5.2.2)
   - Differentiator (4.0.1)
-  - NVActivityIndicatorView (5.0.0):
-    - NVActivityIndicatorView/Base (= 5.0.0)
   - NVActivityIndicatorView/Base (5.0.0)
+  - NVActivityIndicatorView/Extended (5.0.0):
+    - NVActivityIndicatorView/Base
   - RxBlocking (5.1.1):
     - RxSwift (~> 5)
   - RxCocoa (5.1.1):
@@ -18,13 +18,13 @@ PODS:
   - RxSwift (5.1.1)
   - RxTest (5.1.1):
     - RxSwift (~> 5)
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
 
 DEPENDENCIES:
   - Alamofire
-  - NVActivityIndicatorView
+  - NVActivityIndicatorView/Extended
   - RxBlocking
   - RxCocoa
   - RxDataSources
@@ -46,7 +46,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   NVActivityIndicatorView: f109ed069924ac1b4adbc1ae9cfaeac0be1d6c2c
   RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
@@ -55,8 +55,8 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
 
-PODFILE CHECKSUM: 3efddbaa17e6d3af6f86397cd6e9e18a1f1ebad0
+PODFILE CHECKSUM: f591f559b4fc3647c0eaa69418d08b4a37630ebc
 
 COCOAPODS: 1.9.3

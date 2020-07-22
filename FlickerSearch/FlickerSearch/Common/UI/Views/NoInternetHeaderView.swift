@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NoInternetHeaderView: UIView, NibLoadableView {
+final class NoInternetHeaderView: UIView, NibLoadableView {
     
-    @IBOutlet weak var noInternetLabel: UILabel!
+    @IBOutlet weak private var noInternetLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class FlickerPhoto {
+struct FlickerPhoto {
     
     static func getImageUrl(model: PhotoDTO, size: Size ) -> String {
         guard let farm = model.farm,

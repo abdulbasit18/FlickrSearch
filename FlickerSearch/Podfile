@@ -9,10 +9,11 @@ target 'FlickerSearch' do
   
   pod 'Alamofire'
   pod 'SDWebImage'
-  pod 'NVActivityIndicatorView'
+  pod 'NVActivityIndicatorView/Extended'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  
 
   target 'FlickerSearchTests' do
     inherit! :search_paths
