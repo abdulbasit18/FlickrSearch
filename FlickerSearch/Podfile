@@ -21,8 +21,4 @@ target 'FlickerSearch' do
     pod 'RxBlocking'
   end
 
-  target 'FlickerSearchUITests' do
-    # Pods for testing
-  end
-
 end
