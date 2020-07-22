@@ -12,13 +12,14 @@ import RxSwift
 @testable import FlickerSearch
 
 final class MockPhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
+    
+    // MARK: - Properties
     var inputs: PhotosRemoteDataInputs { self }
     var outputs: PhotosRemoteDataOutputs { self }
     
     var getPhotosSubject = PublishSubject<PhotoRequestModel>()
     var fetchPhotoSubject = PublishSubject<PhotoResponseModel>()
     var failWithErrorSubject = PublishSubject<Error>()
-    
     private var disposeBag = DisposeBag()
     
     init() {
@@ -26,6 +27,14 @@ final class MockPhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
         self.setupData()
     }
     
+    // MARK: - Input Data
+    private func setUpBindings() {
+        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (_) in
+            self?.setupData()
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - OutPut Data
     private func setupData() {
         let testBundle = Bundle(for: PhotoListTests.self)
         
@@ -40,10 +49,5 @@ final class MockPhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
         }
     }
     
-    private func setUpBindings() {
-        inputs.getPhotosSubject.subscribe(onNext: { [weak self] (_) in
-            self?.setupData()
-        }).disposed(by: disposeBag)
-    }
     
 }
