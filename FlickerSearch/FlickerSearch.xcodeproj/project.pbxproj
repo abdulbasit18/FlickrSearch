@@ -52,6 +52,10 @@
 		6EBEA94824C4893A005DA753 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA94724C4893A005DA753 /* PhotoRequest.swift */; };
 		6EBEA94A24C48943005DA753 /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA94924C48943005DA753 /* PhotoResponse.swift */; };
 		6EBEA95124C48B3B005DA753 /* PhotosLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBEA95024C48B3B005DA753 /* PhotosLocalDataSource.swift */; };
+		6EF2FAD924D1E2CF008F83CF /* Container+RegisterDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2FAD824D1E2CF008F83CF /* Container+RegisterDependencies.swift */; };
+		6EF2FADB24D1E2F5008F83CF /* Container+ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2FADA24D1E2F5008F83CF /* Container+ViewModels.swift */; };
+		6EF2FADD24D1E316008F83CF /* Container+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2FADC24D1E316008F83CF /* Container+Services.swift */; };
+		6EF2FADF24D1E331008F83CF /* Container+Coordinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2FADE24D1E331008F83CF /* Container+Coordinators.swift */; };
 		F49816223EAE80DD602822FE /* Pods_FlickerSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE339F2B3ADDD2D6BED785AF /* Pods_FlickerSearchTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +120,10 @@
 		6EBEA94724C4893A005DA753 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoRequest.swift; path = UI/Photos/PhotoListings/View/View/PhotoRequest.swift; sourceTree = SOURCE_ROOT; };
 		6EBEA94924C48943005DA753 /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoResponse.swift; path = UI/Photos/PhotoListings/View/View/PhotoResponse.swift; sourceTree = SOURCE_ROOT; };
 		6EBEA95024C48B3B005DA753 /* PhotosLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLocalDataSource.swift; sourceTree = "<group>"; };
+		6EF2FAD824D1E2CF008F83CF /* Container+RegisterDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+RegisterDependencies.swift"; sourceTree = "<group>"; };
+		6EF2FADA24D1E2F5008F83CF /* Container+ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+ViewModels.swift"; sourceTree = "<group>"; };
+		6EF2FADC24D1E316008F83CF /* Container+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Services.swift"; sourceTree = "<group>"; };
+		6EF2FADE24D1E331008F83CF /* Container+Coordinators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Coordinators.swift"; sourceTree = "<group>"; };
 		72F4024EB3DBE160F6C93480 /* Pods-FlickerSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerSearch.release.xcconfig"; path = "Target Support Files/Pods-FlickerSearch/Pods-FlickerSearch.release.xcconfig"; sourceTree = "<group>"; };
 		7B70709CBF4B0F02CFE95E47 /* Pods_FlickerSearch_FlickerSearchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerSearch_FlickerSearchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B801D15CBEC826EAE44CE92 /* Pods-FlickerSearchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerSearchTests.release.xcconfig"; path = "Target Support Files/Pods-FlickerSearchTests/Pods-FlickerSearchTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +302,7 @@
 		6EAAA5E324C0EC7A0067F283 /* FlickerSearch */ = {
 			isa = PBXGroup;
 			children = (
+				6EF2FAD724D1E2B0008F83CF /* DependencyInjection */,
 				6EAAA61924C0EF4A0067F283 /* AppStartup */,
 				6EAAA61A24C0EF550067F283 /* Common */,
 				6EAAA61B24C0EF600067F283 /* Features */,
@@ -545,6 +554,17 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		6EF2FAD724D1E2B0008F83CF /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				6EF2FAD824D1E2CF008F83CF /* Container+RegisterDependencies.swift */,
+				6EF2FADA24D1E2F5008F83CF /* Container+ViewModels.swift */,
+				6EF2FADC24D1E316008F83CF /* Container+Services.swift */,
+				6EF2FADE24D1E331008F83CF /* Container+Coordinators.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
 		9170DDD81917674C17F206B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E0CDB4324C4AA04002B096E /* PhotosRepository.swift in Sources */,
+				6EF2FADF24D1E331008F83CF /* Container+Coordinators.swift in Sources */,
 				6E485C9F24C18FDB0004A099 /* UIViewController+Extension.swift in Sources */,
 				6E485C9D24C18FCA0004A099 /* NibLoadableView.swift in Sources */,
 				6EBEA94624C48797005DA753 /* AppNavigator.swift in Sources */,
@@ -783,7 +804,9 @@
 				6E8F528A24C76CBA002CA531 /* PhotoDetailViewController.swift in Sources */,
 				6E0CDB4024C4A924002B096E /* Constants.swift in Sources */,
 				6E485C9924C18FB20004A099 /* UIFont+Extension.swift in Sources */,
+				6EF2FAD924D1E2CF008F83CF /* Container+RegisterDependencies.swift in Sources */,
 				6EBEA93C24C48259005DA753 /* PhotoListNavigator.swift in Sources */,
+				6EF2FADB24D1E2F5008F83CF /* Container+ViewModels.swift in Sources */,
 				6EBEA93E24C482B0005DA753 /* PhotoDTO.swift in Sources */,
 				6E485C9524C18F8A0004A099 /* UICollectionView+Extension.swift in Sources */,
 				6E0CDB4824C4B4D2002B096E /* PhotosListViewModel.swift in Sources */,
@@ -793,6 +816,7 @@
 				6E485C9B24C18FBE0004A099 /* AlertPresentable+Extension.swift in Sources */,
 				6E0CDB3324C49543002B096E /* Photo+CoreDataClass.swift in Sources */,
 				6E0CDB3D24C49DF0002B096E /* NetworkManager.swift in Sources */,
+				6EF2FADD24D1E316008F83CF /* Container+Services.swift in Sources */,
 				6E0CDB3624C4973C002B096E /* Photo+CoreDataProperties.swift in Sources */,
 				6E8F528C24C7708B002CA531 /* PhotoDetailViewModel.swift in Sources */,
 				6E0CDB4624C4AD6F002B096E /* PhotosService.swift in Sources */,

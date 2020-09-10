@@ -16,8 +16,6 @@ struct DefaultAPIRequest: APIRequest {
 
 final class NetworkManager: Networking {
     
-    public init() { }
-    
     func get<T: Decodable,
         R: Encodable>(request: RequestBuilder<R>,
                       completion: @escaping Completion<T>) -> APIRequest {

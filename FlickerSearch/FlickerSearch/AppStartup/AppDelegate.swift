@@ -8,17 +8,23 @@
 
 import UIKit
 import CoreData
+import Swinject
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var navigator = AppNavigator()
+    var navigator: AppNavigator!
+    static let container = Container()
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
+        
+        AppDelegate.container.registerDependencies()
+        
+        navigator = AppDelegate.container.resolve(AppNavigator.self)
         navigator.installRoot(into: window!)
         window?.makeKeyAndVisible()
         

@@ -13,6 +13,7 @@ protocol PhotoListNavigatorProtocol {
 }
 
 final class PhotoListNavigator: PhotoListNavigatorProtocol {
+    
     private weak var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController) {

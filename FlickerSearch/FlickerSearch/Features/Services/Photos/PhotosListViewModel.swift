@@ -85,8 +85,8 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     private func inputBindings() {
         
         //Load initial calls on viewDidLoad
-        inputs.searchSubject.subscribe(onNext: { (tag) in
-            self.loadView(tag: tag)
+        inputs.searchSubject.subscribe(onNext: { [weak self] (tag) in
+            self?.loadView(tag: tag)
         }).disposed(by: disposeBag)
         
         //Call services on reaching collection view scroll bottom
@@ -131,13 +131,13 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
             .disposed(by: disposeBag)
         
         // Set check
-        sharedPhotoSubject.subscribe(onNext: { (_) in
-            self.fetchedFromLocalStorage = false
+        sharedPhotoSubject.subscribe(onNext: { [weak self] (_) in
+            self?.fetchedFromLocalStorage = false
         }).disposed(by: disposeBag)
         
-        sharedPhotoSubject.subscribe(onNext: { (photos) in
+        sharedPhotoSubject.subscribe(onNext: { [weak self] (photos) in
             if photos.isEmpty {
-                self.outputs.alertSubject
+                self?.outputs.alertSubject
                     .onNext((title:"Nothing Found",
                              message: "We couldn't found any photos, please try later"))
                 return
@@ -193,7 +193,9 @@ final class PhotosListViewModel: PhotosListViewModelProtocol {
     }
     
     private func didTapOnCell(index: Int) {
-        navigator.navigateToDetail(with: getPhotos()[index])
+        DispatchQueue.main.async {
+            self.navigator.navigateToDetail(with: self.getPhotos()[index])
+        }
     }
     
     private func getPhotos() -> [PhotoDTO] {

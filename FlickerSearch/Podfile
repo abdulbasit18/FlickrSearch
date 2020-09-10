@@ -13,6 +13,8 @@ target 'FlickerSearch' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'Swinject'
+  pod 'SwinjectAutoregistration'
   
 
   target 'FlickerSearchTests' do

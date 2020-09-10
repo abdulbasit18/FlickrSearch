@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 
 // MARK: - Protocols
-
 protocol PhotosRemoteDataOutputs: class {
     var fetchPhotoSubject: PublishSubject<PhotoResponseModel> { get }
     var failWithErrorSubject: PublishSubject<Error> { get }
@@ -43,7 +42,7 @@ final class PhotosRemoteDataStore: PhotosRemoteDataStoreProtocol {
     private let endpoint = ""
     
     // MARK: - Initilizers
-    init(networkManager: Networking = NetworkManager()) {
+    init(networkManager: Networking) {
         self.networkManager = networkManager
         
         //Setup Rx Bindings
